@@ -14,7 +14,9 @@
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.89.1"
+    "sass": "^1.89.1",
+    "swr": "^2.3.3",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.0",
