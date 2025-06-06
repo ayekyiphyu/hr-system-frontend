@@ -21,7 +21,22 @@ body {
 
 html,
 body {
+  font-family:
+    "Hiragino Kaku Gothic Pro W3",
+    "游ゴシック",
+    "YuGothic",
+    "ヒラギノ角ゴ ProN W3",
+    "Hiragino Kaku Gothic ProN",
+    "メイリオ",
+    "Meiryo",
+    "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  padding: 0;
+  line-height: 1.5;
+  color: #333;
 }
