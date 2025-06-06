@@ -47,7 +47,7 @@ export default function LoginPage() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="bg-white text-primary h-[4.6rem]"
+                                className="bg-white text-primary h-[46px] mt-[30px]"
                                 placeholder="メールアドレス *"
                             />
                         </div>
@@ -60,36 +60,35 @@ export default function LoginPage() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                className="bg-white"
+                                className="bg-white h-[46px] mt-[30px]"
                                 placeholder="パスワード *"
                             />
                         </div>
 
                         <Button
                             type="submit"
-                            className="w-full flex items-center justify-center gap-2"
+                            className="w-full flex items-center justify-center gap-2 h-[46px] mt-[30px]"
                             disabled={!formData.email || !formData.password}
                         >
                             ログイン
                         </Button>
                     </form>
 
-                    <div className="mt-6 text-center space-y-4">
-                        <Link href="/forgot-password" className="block">
-                            <Button variant="link" className="text-sm text-primary p-0 cursor-pointer">
-                                パスワードをお忘れですか？
-                            </Button>
-                        </Link>
-
-                        <div className="pt-2 border-t">
-                            <p className="text-sm mb-2">アカウントをお持ちでないですか？</p>
+                    <div className="mt-6 text-right space-y-4">
+                        <div className="pt-2">
                             <Link href="/register" className="block">
                                 <Button
                                     variant="outline"
-                                    className="w-full flex items-center justify-center gap-2"
+                                    className="w-full flex items-center justify-center gap-2 h-[46px]"
                                 >
                                     <User className="h-4 w-4" />
                                     新規登録
+                                </Button>
+                            </Link>
+
+                            <Link href="/forgot-password" className="block">
+                                <Button variant="link" className="text-sm text-primary p-0 cursor-pointer ">
+                                    パスワードをお忘れですか？
                                 </Button>
                             </Link>
                         </div>
