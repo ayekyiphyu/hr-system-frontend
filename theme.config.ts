@@ -1,21 +1,20 @@
 const themeConfig = {
   colors: {
-    primary: "#283747",
-    secondary: "#EAEDED",
-    secondaryDark: "#283747 ",
+    primary: "#D6351A",
+    secondary: "#FFF8F8",
     white: "#ffffff",
-    gray: "#cccccc",
-    grayLight: "#c0c0c0",
-    black: "#000000",
-    green: "#badc58",
-    yellow: "#f9ca24",
-    purple: "#341f97",
+    black: "#333333",
+    green: "#286E34",
+    yellow: "#FFEEAA",
+    blue: "#C8EDFD",
+    darkBlue: "#023F81",
     red: "#df4759",
-    blue: "#227093",
     yellowLight: "#3498db",
     greenLight: "#32ff7e",
     navy: "#130f40",
+    orange: "#f39c12",
   } as { [key: string]: string },
+
   fontFamily: {
     body: [
       "Hiragino Kaku Gothic Pro W3",
@@ -31,12 +30,14 @@ const themeConfig = {
       "sans-serif",
     ],
   },
+
   fontSize: {
     fontError: "5rem",
     fontHeader: "3rem",
     fontTitle: "2rem",
     fontLarge: "1.6rem",
     fontRegular: "1.2rem",
+    fontSmall: "0.9rem",
   },
 };
 
