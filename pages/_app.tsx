@@ -1,6 +1,8 @@
 
 
 import "@/styles/globals.css";
+
+import '@/lib/theme.config';
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
