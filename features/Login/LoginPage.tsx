@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { User } from 'lucide-react'; // Make sure this import exists
+import { LogIn, User } from 'lucide-react'; // Make sure this import exists
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -36,7 +36,7 @@ export default function LoginPage() {
                 <CardHeader>
                     <CardTitle className="text-center text-2xl font-bold">ログイン</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className='bg-secondary w-sm ' style={{ margin: '0 auto' }}>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-2">
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="bg-white text-primary h-[46px] mt-[30px]"
+                                className="bg-white primary-text h-[46px] mt-[30px] placeholder:primary-text"
                                 placeholder="メールアドレス *"
                             />
                         </div>
@@ -60,18 +60,31 @@ export default function LoginPage() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                className="bg-white h-[46px] mt-[30px]"
+                                className="bg-white primary-text h-[46px] mt-[30px] placeholder:primary-text"
                                 placeholder="パスワード *"
                             />
                         </div>
 
+                        <Link href="/forgot-password" className="block">
+                            <Button
+                                variant="link"
+                                className="text-sm primary-text  p-0 cursor-pointer flex justify-end w-full text-primary "
+                            >
+                                パスワードをお忘れですか？
+                            </Button>
+                        </Link>
+
                         <Button
                             type="submit"
-                            className="w-full flex items-center justify-center gap-2 h-[46px] mt-[30px]"
-                            disabled={!formData.email || !formData.password}
+                            variant="outline"
+                            className="w-full flex items-center justify-center gap-2 h-[46px] mt-[30px] cursor-pointer primary-background text-white"
+
                         >
+                            <LogIn />
                             ログイン
                         </Button>
+
+
                     </form>
 
                     <div className="mt-6 text-right space-y-4">
@@ -79,18 +92,14 @@ export default function LoginPage() {
                             <Link href="/register" className="block">
                                 <Button
                                     variant="outline"
-                                    className="w-full flex items-center justify-center gap-2 h-[46px]"
+                                    className="w-full flex items-center justify-center gap-2 h-[46px] cursor-pointer mb-[48px]"
                                 >
-                                    <User className="h-4 w-4" />
-                                    新規登録
+                                    <User className="h-4 w-4 primary-text" />
+                                    <span className='primary-text'>新規登録</span>
                                 </Button>
                             </Link>
 
-                            <Link href="/forgot-password" className="block">
-                                <Button variant="link" className="text-sm text-primary p-0 cursor-pointer ">
-                                    パスワードをお忘れですか？
-                                </Button>
-                            </Link>
+
                         </div>
                     </div>
                 </CardContent>
