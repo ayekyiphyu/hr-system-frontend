@@ -2,7 +2,7 @@
 import PasswordSettingPage from "@/features/Password/PasswordSettingPage";
 
 
-export default function ForgotPassword() {
+export default function PasswordSetting() {
     return (
         <>
             <PasswordSettingPage />
