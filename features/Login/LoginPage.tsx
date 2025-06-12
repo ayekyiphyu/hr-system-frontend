@@ -3,9 +3,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { LogIn } from 'lucide-react'; // Make sure this import exists
+import { LogIn } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function LoginPage() {
     // 1. State to hold form data
@@ -15,7 +15,7 @@ export default function LoginPage() {
     });
 
     // 2. Handle input changes
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
@@ -24,70 +24,77 @@ export default function LoginPage() {
     };
 
     //3. Handle form submit
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Submitting:', formData);
         // TODO: Add your API call or auth logic here
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-muted px-4">
-            <Card className="w-full max-w-md shadow-xl">
-                <CardHeader>
-                    <CardTitle className="text-center text-2xl font-bold">ログイン</CardTitle>
-                </CardHeader>
-                <CardContent className='bg-secondary w-sm ' style={{ margin: '0 auto' }}>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="space-y-2">
-
-                            <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="bg-white primary-text h-[46px] mt-[30px] placeholder:primary-text"
-                                placeholder="メールアドレス *"
-                            />
-                        </div>
-
-                        <div className="space-y-2">
-                            <Input
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                className="bg-white primary-text h-[46px] mt-[30px] placeholder:primary-text"
-                                placeholder="パスワード *"
-                            />
-                        </div>
-
-                        <Link href="/forgot-password" className="block">
-                            <Button
-                                variant="link"
-                                className="text-sm primary-text  p-0 cursor-pointer flex justify-end w-full text-primary "
-                            >
-                                パスワードをお忘れですか？
-                            </Button>
-                        </Link>
-
-                        <Button
-                            type="submit"
-                            variant="outline"
-                            className="w-full flex items-center justify-center gap-2 h-[46px] my-[30px] cursor-pointer primary-background text-white"
-
-                        >
-                            <LogIn />
+        <div className="min-h-screen bg-muted flex items-center justify-center p-4 sm:p-6 lg:p-8">
+            <div className="w-full max-w-sm sm:max-w-md">
+                <Card className="shadow-xl border-0 sm:border">
+                    <CardHeader className="space-y-1">
+                        <CardTitle className="text-center text-xl sm:text-2xl font-bold text-primary">
                             ログイン
-                        </Button>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="bg-secondary p-4 sm:p-6 mr-[46px] ml-[46px]">
+                        <div className="space-y-4 sm:space-y-6">
+                            {/* Email Input */}
+                            <div className="space-y-2">
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
+                                    placeholder="メールアドレス *"
+                                />
+                            </div>
 
+                            {/* Password Input */}
+                            <div className="space-y-2">
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
+                                    placeholder="パスワード *"
+                                />
+                            </div>
 
-                    </form>
-                </CardContent>
-            </Card>
+                            {/* Forgot Password Link */}
+                            <div className="flex justify-end">
+                                <Link href="/forgot-password">
+                                    <Button
+                                        variant="link"
+                                        className="text-xs sm:text-sm primary-text p-0 h-auto text-primary hover:text-primary/80 transition-colors"
+                                    >
+                                        パスワードをお忘れですか？
+                                    </Button>
+                                </Link>
+                            </div>
+
+                            {/* Login Button */}
+                            <Button
+                                type="submit"
+                                variant="outline"
+                                onClick={handleSubmit}
+                                className="w-full flex items-center justify-center gap-2 h-10 sm:h-12 primary-background text-white hover:primary-background/90 transition-colors text-sm sm:text-base font-medium"
+                            >
+                                <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
+                                ログイン
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     );
 }

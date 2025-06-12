@@ -154,6 +154,10 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  color: #FFF;
+}
+
 :focus-visible {
   outline: none;
   box-shadow: none;
