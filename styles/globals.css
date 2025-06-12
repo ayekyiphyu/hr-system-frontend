@@ -130,6 +130,10 @@
   background-color: #FFFFFF;
 }
 
+.back-button {
+  background-color: #424040;
+}
+
 textarea:focus,
 input:focus {
   outline: none;

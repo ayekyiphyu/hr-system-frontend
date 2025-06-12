@@ -88,7 +88,7 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                                     別のメールアドレスを試す
                                 </Button>
                                 <Button
-                                    variant="link"
+                                    variant="default"
                                     onClick={handleBackToLogin}
                                     className="w-full text-primary text-sm sm:text-base"
                                 >
@@ -142,9 +142,9 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                             {/* Desktop: Side by side buttons */}
                             <div className="hidden sm:flex justify-between items-center gap-4">
                                 <Button
-                                    variant="outline"
+                                    variant="default"
                                     onClick={handleBackToLogin}
-                                    className="flex-1 max-w-[150px] h-10 sm:h-12 primary-text cursor-pointer text-sm sm:text-base"
+                                    className="flex-1 max-w-[150px] h-10 sm:h-12 text-white cursor-pointer text-sm sm:text-base back-button"
                                 >
                                     <ArrowLeft className="w-4 h-4 mr-2" />
                                     戻る

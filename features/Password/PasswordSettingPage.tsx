@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { CheckCircle, Eye, EyeOff, Lock, X } from "lucide-react"
+import { ArrowLeft, CheckCircle, Eye, EyeOff, Lock, X } from "lucide-react"
 import router from "next/router"
 import * as React from "react"
 import { useState } from "react"
@@ -179,7 +179,7 @@ export default function PasswordSettingPage({
             <Card className="w-full max-w-md mx-auto">
                 <CardHeader className="text-center">
                     <CardTitle className="text-2xl font-bold">
-                        {mode === "reset" ? "設定する" : "パスワードを変更"}
+                        {mode === "reset" ? "パスワード設定する" : "パスワードを変更"}
                     </CardTitle>
                 </CardHeader>
 
@@ -317,10 +317,11 @@ export default function PasswordSettingPage({
                         <div className="flex flex-row space-y-3 gap-3.5 justify-between sm:justify-end">
                             <Button
                                 type="button"
-                                variant="outline"
+                                variant="default"
                                 onClick={() => router.push("/")}
-                                className="w-[150px] h-[46px]"
+                                className="w-[150px] h-[46px] back-button"
                             >
+                                <ArrowLeft className="w-4 h-4 mr-2" />
                                 戻る
                             </Button>
                             <Button
