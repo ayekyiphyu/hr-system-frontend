@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, CheckCircle, Mail } from "lucide-react"
+import { CheckCircle, Mail } from "lucide-react"
 import router from "next/router"
 import * as React from "react"
 import { useState } from "react"
@@ -116,7 +116,7 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
 
                         <div className="space-y-2">
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
                                 <Input
                                     id="email"
                                     name="email"
@@ -130,38 +130,30 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                             </div>
                         </div>
 
-                        <Button
-                            type="submit"
-                            // disabled={isLoading || !email.trim()}
-                            className="w-full h-[46px]"
-                        >
-                            {isLoading ? "送信中..." : "リセットリンクを送信"}
-                        </Button>
-                    </form>
+                        <div className="flex justify-between items-center mt-[29px]">
 
-                    <div className="mt-6 text-center">
-                        {onBackToLogin && (
-                            <Button
-                                variant="default"
-                                onClick={onBackToLogin}
-                                className="text-primary p-0 h-auto primary-background"
-                            >
-                                <ArrowLeft className="h-4 w-4 mr-2" />
-                                ログインに戻る
-                            </Button>
-                        )}
 
-                        <div className="w-auto">
                             <Button
                                 variant="outline"
-                                onClick={() => (router.push('/'))}
-                                className="text-primary p-0 h-auto"
+                                onClick={() => router.push("/")}
+                                className="w-[150px] h-[46px] primary-text cursor-pointer"
                             >
-                                <ArrowLeft className="h-4 w-4 mr-2" />
-                                ログインに戻る
+                                戻る
+                            </Button>
+
+
+                            <Button
+                                type="submit"
+                                variant="outline"
+                                className="w-[150px] h-[46px] primary-background text-white flex items-center justify-center gap-2"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? "送信中..." : "送信する"}
                             </Button>
                         </div>
-                    </div>
+
+
+                    </form>
                 </CardContent>
             </Card>
         </div>
