@@ -15,7 +15,7 @@ export default function LoginPage() {
     });
 
     // 2. Handle input changes
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
@@ -24,7 +24,7 @@ export default function LoginPage() {
     };
 
     //3. Handle form submit
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         console.log('Submitting:', formData);
         // TODO: Add your API call or auth logic here
