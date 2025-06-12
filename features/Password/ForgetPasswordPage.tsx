@@ -105,12 +105,12 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
     return (
         <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-muted">
             <div className="w-full max-w-sm sm:max-w-md">
-                <Card className="shadow-xl border-0 sm:border">
-                    <CardHeader className="text-center space-y-2 sm:space-y-3 p-4 sm:p-6 mb-0 gap-0">
+                <Card className="shadow-xl border-0 sm:border ">
+                    <CardHeader className="text-center space-y-2 sm:space-y-3 p-0 mb-0">
                         <CardTitle className="text-lg sm:text-2xl font-bold text-primary">
                             パスワードをお忘れですか？
                         </CardTitle>
-                        <CardDescription className="text-muted-foreground primary-text px-2 text-[10px] text-justify sm:text-sm gap-0">
+                        <CardDescription className="text-muted-foreground primary-text px-2 text-center sm:text-[10px]">
                             ※メールアドレスを入力してください。パスワードリセットのリンクをお送りします。
                         </CardDescription>
                     </CardHeader>
