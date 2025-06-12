@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { CheckCircle, Eye, EyeOff, Lock, X } from "lucide-react"
+import router from "next/router"
 import * as React from "react"
 import { useState } from "react"
 
@@ -178,14 +179,8 @@ export default function PasswordSettingPage({
             <Card className="w-full max-w-md mx-auto">
                 <CardHeader className="text-center">
                     <CardTitle className="text-2xl font-bold">
-                        {mode === "reset" ? "新しいパスワードを設定" : "パスワードを変更"}
+                        {mode === "reset" ? "設定する" : "パスワードを変更"}
                     </CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                        {mode === "reset"
-                            ? "新しいパスワードを入力してください"
-                            : "現在のパスワードと新しいパスワードを入力してください"
-                        }
-                    </CardDescription>
                 </CardHeader>
 
                 <CardContent className="bg-secondary mx-auto p-6">
@@ -200,7 +195,7 @@ export default function PasswordSettingPage({
                         {mode === "change" && (
                             <div className="space-y-2">
                                 <div className="relative">
-                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
                                     <Input
                                         id="currentPassword"
                                         name="currentPassword"
@@ -216,7 +211,7 @@ export default function PasswordSettingPage({
                                         onClick={() => togglePasswordVisibility("current")}
                                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                     >
-                                        {showPasswords.current ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                        {showPasswords.current ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 " />}
                                     </button>
                                 </div>
                             </div>
@@ -225,7 +220,7 @@ export default function PasswordSettingPage({
                         {/* New Password */}
                         <div className="space-y-2">
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
                                 <Input
                                     id="newPassword"
                                     name="newPassword"
@@ -241,7 +236,7 @@ export default function PasswordSettingPage({
                                     onClick={() => togglePasswordVisibility("new")}
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                 >
-                                    {showPasswords.new ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                    {showPasswords.new ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 primary-text" />}
                                 </button>
                             </div>
 
@@ -280,7 +275,7 @@ export default function PasswordSettingPage({
                         {/* Confirm Password */}
                         <div className="space-y-2">
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
                                 <Input
                                     id="confirmPassword"
                                     name="confirmPassword"
@@ -296,7 +291,7 @@ export default function PasswordSettingPage({
                                     onClick={() => togglePasswordVisibility("confirm")}
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                 >
-                                    {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                    {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4 primary-text" />}
                                 </button>
                             </div>
 
@@ -319,13 +314,21 @@ export default function PasswordSettingPage({
                             )}
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="flex flex-row space-y-3 gap-3.5 justify-between sm:justify-end">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => router.push("/")}
+                                className="w-[150px] h-[46px]"
+                            >
+                                戻る
+                            </Button>
                             <Button
                                 type="submit"
-                                disabled={isLoading || !passwordStrength.isValid || !passwordsMatch}
-                                className="w-full h-[46px]"
+                                disabled={isLoading}
+                                className="w-[150px] h-[46px]"
                             >
-                                {isLoading ? "設定中..." : "パスワードを設定"}
+                                {isLoading ? "設定中..." : "設定する"}
                             </Button>
 
                             {onCancel && (
