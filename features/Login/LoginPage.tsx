@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { LogIn, User } from 'lucide-react'; // Make sure this import exists
+import { LogIn } from 'lucide-react'; // Make sure this import exists
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -77,7 +77,7 @@ export default function LoginPage() {
                         <Button
                             type="submit"
                             variant="outline"
-                            className="w-full flex items-center justify-center gap-2 h-[46px] mt-[30px] cursor-pointer primary-background text-white"
+                            className="w-full flex items-center justify-center gap-2 h-[46px] my-[30px] cursor-pointer primary-background text-white"
 
                         >
                             <LogIn />
@@ -86,22 +86,6 @@ export default function LoginPage() {
 
 
                     </form>
-
-                    <div className="mt-6 text-right space-y-4">
-                        <div className="pt-2">
-                            <Link href="/register" className="block">
-                                <Button
-                                    variant="outline"
-                                    className="w-full flex items-center justify-center gap-2 h-[46px] cursor-pointer mb-[48px]"
-                                >
-                                    <User className="h-4 w-4 primary-text" />
-                                    <span className='primary-text'>新規登録</span>
-                                </Button>
-                            </Link>
-
-
-                        </div>
-                    </div>
                 </CardContent>
             </Card>
         </div>
