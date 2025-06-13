@@ -183,18 +183,6 @@ export default function LoginPage() {
                                 )}
                             </Button>
                         </form>
-
-                        {/* Test Credentials Helper (remove in production) */}
-                        <div className="mt-6 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                            <p className="text-xs text-yellow-800 font-medium mb-2">テスト用アカウント:</p>
-                            <div className="text-xs text-yellow-700 space-y-1">
-                                <div>管理者: admin@example.com</div>
-                                <div>企業: company@example.com</div>
-                                <div>求職者: jobseeker@example.com</div>
-                                <div>一般: user@example.com</div>
-                                <div className="font-medium">パスワード: password123</div>
-                            </div>
-                        </div>
                     </CardContent>
                 </Card>
             </div>
