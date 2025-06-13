@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, CheckCircle, Mail } from "lucide-react"
+import { CheckCircle, Mail } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { SetStateAction, useState } from "react"
 
@@ -115,7 +115,7 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                         </CardDescription>
                     </CardHeader>
 
-                    <CardContent className="gap-0 bg-secondary sm:mt-0 mr-[46px] ml-[46px] p-4 sm:p-6">
+                    <CardContent className="gap-0 bg-white sm:mt-0 mr-[46px] ml-[46px] p-4 sm:p-6">
                         <div className="space-y-4 sm:space-y-6">
                             {error && (
                                 <Alert variant="destructive">
@@ -146,7 +146,7 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                                     onClick={handleBackToLogin}
                                     className="flex-1 max-w-[150px] h-10 sm:h-12 text-white cursor-pointer text-sm sm:text-base back-button"
                                 >
-                                    <ArrowLeft className="w-4 h-4 mr-2" />
+
                                     戻る
                                 </Button>
 
@@ -178,7 +178,6 @@ export default function ForgotPasswordPage({ onBackToLogin }: ForgotPasswordProp
                                     onClick={handleBackToLogin}
                                     className="w-full h-12 primary-text cursor-pointer text-base"
                                 >
-                                    <ArrowLeft className="w-4 h-4 mr-2" />
                                     戻る
                                 </Button>
                             </div>

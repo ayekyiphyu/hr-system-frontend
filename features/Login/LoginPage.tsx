@@ -60,13 +60,12 @@ export default function LoginPage() {
                     router.push('/dashboard');
                 } else if (response.user.isOrganization) {
                     console.log('Redirecting to organization dashboard');
-                    // window.location.href = '/organization/dashboard';
                 } else if (response.user.isJobseeker) {
                     console.log('Redirecting to jobseeker dashboard');
-                    // window.location.href = '/jobseeker/dashboard';
+
                 } else if (response.user.isUser) {
                     console.log('Redirecting to user dashboard');
-                    // window.location.href = '/user/dashboard';
+
                 }
 
                 // Store token if needed
@@ -168,7 +167,7 @@ export default function LoginPage() {
                                 type="submit"
                                 variant="default"
                                 disabled={isLoading}
-                                className="w-full flex items-center justify-center gap-2 h-10 sm:h-12 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm sm:text-base font-medium"
+                                className="w-full text-white flex items-center justify-center gap-2 h-10 sm:h-12 bg-primary text-primary-foreground text-sm sm:text-base font-medium"
                             >
                                 {isLoading ? (
                                     <>
@@ -177,7 +176,7 @@ export default function LoginPage() {
                                     </>
                                 ) : (
                                     <>
-                                        <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
+                                        <LogIn className="w-4 h-4 sm:w-5 sm:h-5 !text-white" />
                                         ログイン
                                     </>
                                 )}
