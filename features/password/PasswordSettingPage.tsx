@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, CheckCircle, Eye, EyeOff, Lock, X } from "lucide-react"
+import { CheckCircle, Eye, EyeOff, Lock, X } from "lucide-react"
 import router from "next/router"
 import * as React from "react"
 import { useState } from "react"
@@ -183,7 +183,7 @@ export default function PasswordSettingPage({
                     </CardTitle>
                 </CardHeader>
 
-                <CardContent className="bg-secondary mx-auto p-6">
+                <CardContent className="bg-white mx-auto p-6">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {error && (
                             <Alert variant="destructive">
@@ -321,7 +321,7 @@ export default function PasswordSettingPage({
                                 onClick={() => router.push("/")}
                                 className="w-[150px] h-[46px] back-button"
                             >
-                                <ArrowLeft className="w-4 h-4 mr-2" />
+
                                 戻る
                             </Button>
                             <Button

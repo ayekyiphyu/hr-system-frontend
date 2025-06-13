@@ -203,8 +203,8 @@ export default function RegisterPage() {
         }
     }
 
-    const handleBackToLogin = () => {
-        router.push("/login")
+    const handleCancel = () => {
+        console.log("cancelled")
     }
 
     if (isSuccess) {
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                             </CardDescription>
 
                             <Button
-                                onClick={handleBackToLogin}
+                                onClick={handleCancel}
                                 className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
                             >
                                 ログインページへ
@@ -476,7 +476,7 @@ export default function RegisterPage() {
                                 <Button
                                     type="button"
                                     variant="outline"
-                                    onClick={handleBackToLogin}
+                                    onClick={handleCancel}
                                     className="w-[151px]  h-[50px] sm:h-12 text-sm sm:text-base primary-text"
                                 >
 
