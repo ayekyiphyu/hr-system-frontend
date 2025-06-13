@@ -139,7 +139,14 @@ input:focus {
   outline: none;
 }
 
+select {
+  height: 46px;
+}
 
+
+svg {
+  color: #dc2626;
+}
 
 *:focus {
   outline: none !important;

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CheckCircle, Eye, EyeOff, Lock, Shield, X } from "lucide-react"
+import { CheckCircle, Eye, EyeOff, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
@@ -58,9 +58,9 @@ export default function RegisterPage() {
     ]
 
     const roles = [
+        { value: "owner", label: "オーナー" },
         { value: "admin", label: "管理者" },
-        { value: "manager", label: "マネージャー" },
-        { value: "member", label: "メンバー" },
+        { value: "operator", label: "オペレーター" },
         { value: "viewer", label: "閲覧者" }
     ]
 
@@ -298,7 +298,6 @@ export default function RegisterPage() {
                                 {/* パスワード */}
                                 <div className="space-y-2">
                                     <div className="relative group">
-                                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-blue-500" />
                                         <Input
                                             id="password"
                                             name="password"
@@ -306,7 +305,7 @@ export default function RegisterPage() {
                                             value={formData.password}
                                             onChange={handleInputChange}
                                             required
-                                            className="bg-white/80 backdrop-blur-sm text-primary h-10 sm:h-12 pl-10 pr-10 placeholder:text-muted-foreground text-sm sm:text-base border-2 border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
+                                            className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
                                             placeholder="パスワード *"
                                         />
                                         <button
@@ -315,8 +314,8 @@ export default function RegisterPage() {
                                             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                         >
                                             {showPasswords.password ?
-                                                <EyeOff className="h-4 w-4" /> :
-                                                <Eye className="h-4 w-4" />
+                                                <EyeOff className="h-4 w-4 primary-text" /> :
+                                                <Eye className="h-4 w-4 primary-text " />
                                             }
                                         </button>
                                     </div>
@@ -325,7 +324,7 @@ export default function RegisterPage() {
                                 {/* パスワード確認 */}
                                 <div className="space-y-2">
                                     <div className="relative group">
-                                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-blue-500" />
+
                                         <Input
                                             id="confirmPassword"
                                             name="confirmPassword"
@@ -333,7 +332,7 @@ export default function RegisterPage() {
                                             value={formData.confirmPassword}
                                             onChange={handleInputChange}
                                             required
-                                            className="bg-white/80 backdrop-blur-sm text-primary h-10 sm:h-12 pl-10 pr-10 placeholder:text-muted-foreground text-sm sm:text-base border-2 border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
+                                            className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
                                             placeholder="パスワード確認 *"
                                         />
                                         <button
@@ -342,8 +341,8 @@ export default function RegisterPage() {
                                             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                         >
                                             {showPasswords.confirm ?
-                                                <EyeOff className="h-4 w-4" /> :
-                                                <Eye className="h-4 w-4" />
+                                                <EyeOff className="h-4 w-4 primary-text" /> :
+                                                <Eye className="h-4 w-4 primary-text" />
                                             }
                                         </button>
                                     </div>
@@ -438,7 +437,7 @@ export default function RegisterPage() {
                             <div className="space-y-2 ">
                                 <div className="relative group ">
                                     <Select onValueChange={(value) => handleSelectChange("department", value)}>
-                                        <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base">
+                                        <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base !h-[46px] min-h-[46px]" >
                                             <SelectValue placeholder="組織部 *" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -455,9 +454,8 @@ export default function RegisterPage() {
                             {/* 権限 */}
                             <div className="space-y-2">
                                 <div className="relative group">
-                                    <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-blue-500 z-10" />
                                     <Select onValueChange={(value) => handleSelectChange("role", value)}>
-                                        <SelectTrigger className="w-full bg-white/80 backdrop-blur-sm text-primary h-10 sm:h-12 pl-10 text-sm sm:text-base border-2 border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-200">
+                                        <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base !h-[46px] min-h-[46px]" >
                                             <SelectValue placeholder="権限 *" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -473,13 +471,13 @@ export default function RegisterPage() {
 
 
                             {/* Buttons */}
-                            <div className="hidden sm:flex space-around items-center gap-4">
+                            <div className="hidden sm:flex justify-center items-center gap-4">
                                 {/* Back to Login Button */}
                                 <Button
                                     type="button"
                                     variant="outline"
                                     onClick={handleBackToLogin}
-                                    className="w-[151px]  h-[50px] sm:h-12 text-sm sm:text-base "
+                                    className="w-[151px]  h-[50px] sm:h-12 text-sm sm:text-base primary-text"
                                 >
 
                                     キャンセル
@@ -489,11 +487,11 @@ export default function RegisterPage() {
                                     type="submit"
                                     variant="default"
                                     disabled={isLoading}
-                                    className="w-[151px] h-[50px] sm:h-12 text-sm sm:text-base  text-white border-0 transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                                    className="w-[151px] h-[50px] sm:h-12 text-sm sm:text-base  text-white border-0"
                                 >
                                     {isLoading ? (
                                         <>
-                                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                                            <div className="w-4 h-4 border-2 border-white  rounded-full"></div>
                                             登録中...
                                         </>
                                     ) : (
