@@ -1,33 +1,93 @@
 'use client';
 
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { LogIn } from 'lucide-react';
+import { dummyLogin } from '@/dummy/dummy';
+import { LoginFormData } from '@/type/type';
+import { Eye, EyeOff, LogIn } from 'lucide-react';
 import Link from 'next/link';
+import router from 'next/router';
 import { useState } from 'react';
+
 
 export default function LoginPage() {
     // 1. State to hold form data
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<LoginFormData>({
         email: '',
         password: '',
     });
 
-    // 2. Handle input changes
-    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    // 2. Additional states for better UX
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string>('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    // 3. Handle input changes with proper typing
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
+        setFormData((prev: LoginFormData) => ({
             ...prev,
             [name]: value,
         }));
+        // Clear error when user starts typing
+        if (error) setError('');
     };
 
-    //3. Handle form submit
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    // 4. Handle form submit with proper error handling
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Submitting:', formData);
-        // TODO: Add your API call or auth logic here
+        setIsLoading(true);
+        setError('');
+
+        try {
+            console.log('Submitting:', formData);
+
+            // Basic validation
+            if (!formData.email || !formData.password) {
+                setError('メールアドレスとパスワードを入力してください');
+                return;
+            }
+
+            const response = await dummyLogin(formData);
+
+            if (response.success && response.user) {
+                console.log('Login successful:', response.user);
+
+                // Handle different user roles
+                if (response.user.isAdmin) {
+                    router.push('/dashboard');
+                } else if (response.user.isOrganization) {
+                    console.log('Redirecting to organization dashboard');
+                    // window.location.href = '/organization/dashboard';
+                } else if (response.user.isJobseeker) {
+                    console.log('Redirecting to jobseeker dashboard');
+                    // window.location.href = '/jobseeker/dashboard';
+                } else if (response.user.isUser) {
+                    console.log('Redirecting to user dashboard');
+                    // window.location.href = '/user/dashboard';
+                }
+
+                // Store token if needed
+                if (response.token) {
+                    localStorage.setItem('authToken', response.token);
+                }
+
+            } else {
+                setError(response.message || 'ログインに失敗しました');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            setError('ネットワークエラーが発生しました。もう一度お試しください。');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // 5. Toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -40,7 +100,16 @@ export default function LoginPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="bg-secondary p-4 sm:p-6 mr-[46px] ml-[46px]">
-                        <div className="space-y-4 sm:space-y-6">
+                        {/* Show error message */}
+                        {error && (
+                            <Alert className="mb-4 border-red-200 bg-red-50">
+                                <AlertDescription className="text-red-800">
+                                    {error}
+                                </AlertDescription>
+                            </Alert>
+                        )}
+
+                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                             {/* Email Input */}
                             <div className="space-y-2">
                                 <Input
@@ -50,23 +119,36 @@ export default function LoginPage() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
+                                    disabled={isLoading}
+                                    className="bg-white text-foreground h-10 sm:h-12 w-full placeholder:text-muted-foreground text-sm sm:text-base"
                                     placeholder="メールアドレス *"
                                 />
                             </div>
 
                             {/* Password Input */}
-                            <div className="space-y-2">
+                            <div className="space-y-2 relative">
                                 <Input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     value={formData.password}
                                     onChange={handleChange}
                                     required
-                                    className="bg-white primary-text h-10 sm:h-12 w-full placeholder:primary-text text-sm sm:text-base"
+                                    disabled={isLoading}
+                                    className="bg-white text-foreground h-10 sm:h-12 w-full placeholder:text-muted-foreground text-sm sm:text-base pr-10"
                                     placeholder="パスワード *"
                                 />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="w-4 h-4" />
+                                    ) : (
+                                        <Eye className="w-4 h-4" />
+                                    )}
+                                </button>
                             </div>
 
                             {/* Forgot Password Link */}
@@ -74,7 +156,7 @@ export default function LoginPage() {
                                 <Link href="/forgot-password">
                                     <Button
                                         variant="link"
-                                        className="text-xs sm:text-sm primary-text p-0 h-auto text-primary hover:text-primary/80 transition-colors"
+                                        className="text-xs sm:text-sm p-0 h-auto text-primary hover:text-primary/80 transition-colors"
                                     >
                                         パスワードをお忘れですか？
                                     </Button>
@@ -84,13 +166,34 @@ export default function LoginPage() {
                             {/* Login Button */}
                             <Button
                                 type="submit"
-                                variant="outline"
-                                onClick={handleSubmit}
-                                className="w-full flex items-center justify-center gap-2 h-10 sm:h-12 primary-background text-white hover:primary-background/90 transition-colors text-sm sm:text-base font-medium"
+                                variant="default"
+                                disabled={isLoading}
+                                className="w-full flex items-center justify-center gap-2 h-10 sm:h-12 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm sm:text-base font-medium"
                             >
-                                <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
-                                ログイン
+                                {isLoading ? (
+                                    <>
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        処理中...
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
+                                        ログイン
+                                    </>
+                                )}
                             </Button>
+                        </form>
+
+                        {/* Test Credentials Helper (remove in production) */}
+                        <div className="mt-6 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                            <p className="text-xs text-yellow-800 font-medium mb-2">テスト用アカウント:</p>
+                            <div className="text-xs text-yellow-700 space-y-1">
+                                <div>管理者: admin@example.com</div>
+                                <div>企業: company@example.com</div>
+                                <div>求職者: jobseeker@example.com</div>
+                                <div>一般: user@example.com</div>
+                                <div className="font-medium">パスワード: password123</div>
+                            </div>
                         </div>
                     </CardContent>
                 </Card>
