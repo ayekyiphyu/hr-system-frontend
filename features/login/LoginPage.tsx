@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { dummyLogin } from '@/dummy/dummy';
 import { LoginFormData } from '@/type/type';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
-import Link from 'next/link';
 import router from 'next/router';
 import { useState } from 'react';
 
@@ -150,17 +149,7 @@ export default function LoginPage() {
                                 </button>
                             </div>
 
-                            {/* Forgot Password Link */}
-                            <div className="flex justify-end">
-                                <Link href="/forgot-password">
-                                    <Button
-                                        variant="link"
-                                        className="text-xs sm:text-sm p-0 h-auto text-primary hover:text-primary/80 transition-colors"
-                                    >
-                                        パスワードをお忘れですか？
-                                    </Button>
-                                </Link>
-                            </div>
+
 
                             {/* Login Button */}
                             <Button

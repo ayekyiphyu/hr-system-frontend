@@ -1,5 +1,5 @@
 
-import RegisterPage from "@/features/Register/RegisterPage";
+import RegisterPage from "@/features/register/RegisterPage";
 
 
 export default function register() {

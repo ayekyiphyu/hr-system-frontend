@@ -1,5 +1,5 @@
 
-import ForgotPasswordPage from "@/features/Password/ForgetPasswordPage";
+import ForgotPasswordPage from "@/features/password/ForgetPasswordPage";
 
 
 export default function ForgotPassword() {
