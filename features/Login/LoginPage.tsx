@@ -99,7 +99,7 @@ export default function LoginPage() {
                             ログイン
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="bg-secondary p-4 sm:p-6 mr-[46px] ml-[46px]">
+                    <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">
                         {/* Show error message */}
                         {error && (
                             <Alert className="mb-4 border-red-200 bg-red-50">
