@@ -241,7 +241,7 @@ export default function Header({
                     </Sheet>
 
                     <div className="ml-4 hidden sm:block ">
-                        <h1 className="text-xl font-bold primary-text !m-0 !p-0">ダッシュボード</h1>
+                        <h1 className="text-xl font-bold text-black !m-0 !p-0">ダッシュボード</h1>
                     </div>
                 </div>
 
