@@ -187,7 +187,7 @@ export default function Header({
     }
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur secondary-background">
             <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Left Side - Menu & Logo */}
                 <div className="flex items-center">
@@ -240,8 +240,8 @@ export default function Header({
                         </SheetContent>
                     </Sheet>
 
-                    <div className="ml-4 hidden sm:block">
-                        <h1 className="text-xl font-bold primary-text !m-0 !p-0">YUIME Matching System</h1>
+                    <div className="ml-4 hidden sm:block ">
+                        <h1 className="text-xl font-bold primary-text !m-0 !p-0">ダッシュボード</h1>
                     </div>
                 </div>
 
