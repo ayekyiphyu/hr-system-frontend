@@ -54,3 +54,30 @@ export interface ApiResponse<T = any> {
   data?: T;
   error?: ApiError;
 }
+
+// for drawer menu
+export interface HeaderProps {
+  adminName?: string;
+  adminAvatar?: string;
+  adminRole?: string;
+  notificationCount?: number;
+  onNavigate?: (page: string) => void; // New: navigation callback
+  currentPage?: string; // New: current active page
+}
+
+export interface MenuItem {
+  title: string;
+  icon: any; // Lucide icon component
+  href?: string;
+  pageKey?: string; // New: for internal page navigation
+  onClick?: () => void; // New: for custom click handlers
+  badge?: string;
+  children?: MenuItem[];
+}
+
+//inviation
+export interface InvitationFormData {
+  emails: string;
+  role: UserRole | "";
+  message?: string;
+}

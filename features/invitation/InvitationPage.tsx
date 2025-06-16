@@ -5,17 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { UserRole } from '@/type/type';
+import { InvitationFormData } from '@/type/type';
 import { Mail } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-
-interface InvitationFormData {
-    emails: string;
-    role: UserRole | '';
-    message?: string;
-}
 
 export default function InvitationPage() {
     const router = useRouter();
@@ -127,16 +121,28 @@ export default function InvitationPage() {
 
     // Handle cancel
     const handleCancel = () => {
-        router.push('/dashboard');
+        setFormData({
+            emails: '',
+            role: '',
+            message: '',
+        });
+        setEmailList([]);
+        setError('');
+        setSuccess('');
+        setIsLoading(false);
+
     };
 
     // Role options with Japanese labels
     const roleOptions = [
-        { value: 'admin', label: '管理者', description: 'システム全体の管理権限' },
-        { value: 'user', label: '一般ユーザー', description: '基本的な利用権限' },
-        { value: 'organization', label: '企業', description: '求人投稿・管理権限' },
-        { value: 'jobseeker', label: '求職者', description: '求職活動・応募権限' },
+        { value: 'owner', label: 'オーナー', description: '' },
+        { value: 'admin', label: '管理者', description: '' },
+        { value: 'operator', label: 'オペレーター', description: '' },
+        { value: 'viewer', label: '閲覧者', description: '' },
     ];
+
+
+
 
     return (
         <div className="min-h-screen bg-muted flex items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -148,7 +154,7 @@ export default function InvitationPage() {
                         </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="space-y-6">
+                    <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">
                         {/* Success Message */}
                         {success && (
                             <Alert className="border-green-200 bg-green-50">
@@ -195,7 +201,7 @@ export default function InvitationPage() {
                                     onValueChange={(value) => handleChange('role', value)}
                                     disabled={isLoading}
                                 >
-                                    <SelectTrigger className='primary-text w-full '>
+                                    <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base !h-[46px] min-h-[46px]" >
                                         <SelectValue placeholder="権限 *" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -220,29 +226,29 @@ export default function InvitationPage() {
                                     id="message"
                                     value={formData.message}
                                     onChange={(e) => handleChange('message', e.target.value)}
-                                    placeholder="招待に関する追加メッセージがあれば入力してください"
+                                    placeholder="招待メッセージ"
                                     className="min-h-[60px] resize-none"
                                     disabled={isLoading}
                                 />
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                            <div className="hidden sm:flex justify-center items-center gap-4">
                                 <Button
                                     type="button"
                                     variant="outline"
                                     onClick={handleCancel}
-                                    disabled={isLoading}
-                                    className="flex-1 flex items-center justify-center gap-2"
+                                    className="w-[180px]  h-[50px] sm:h-12 text-sm sm:text-base primary-text"
                                 >
 
                                     キャンセル
                                 </Button>
 
+
                                 <Button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                                    className="w-[180px] h-[50px] sm:h-12 text-sm sm:text-base  text-white border-0"
                                 >
                                     {isLoading ? (
                                         <>
@@ -252,7 +258,7 @@ export default function InvitationPage() {
                                     ) : (
                                         <>
 
-                                            招待を送信
+                                            送信する
                                         </>
                                     )}
                                 </Button>
