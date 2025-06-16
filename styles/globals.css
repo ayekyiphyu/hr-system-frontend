@@ -191,3 +191,7 @@ button {
     @apply bg-background text-foreground;
   }
 }
+
+.inset-0 {
+  inset: auto;
+}
