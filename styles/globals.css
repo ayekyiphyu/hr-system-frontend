@@ -195,3 +195,7 @@ button {
 .inset-0 {
   inset: auto;
 }
+
+.text-card-foreground {
+  color: #dc2626;
+}

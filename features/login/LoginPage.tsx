@@ -147,7 +147,12 @@ export default function LoginPage() {
                                         <Eye className="w-4 h-4" />
                                     )}
                                 </button>
+
+
                             </div>
+                            <p className="text-xs mt-1 text-right  font-bold text-primary-text">
+                                <a href="/forgot-password" className="text-primary-text underline hover:underline">パスワードを忘れた場合</a>
+                            </p>
 
 
 
