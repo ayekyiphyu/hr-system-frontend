@@ -205,6 +205,19 @@ export default function RegisterPage() {
 
     const handleCancel = () => {
         console.log("cancelled")
+        setFormData({
+            fullName: "",
+            email: "",
+            phone: "",
+            password: "",
+            confirmPassword: "",
+            department: "",
+            role: ""
+        })
+        setShowPasswords({ password: false, confirm: false })
+        setError("")
+        setIsLoading(false)
+
     }
 
     if (isSuccess) {
