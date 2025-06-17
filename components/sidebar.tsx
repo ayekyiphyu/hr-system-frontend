@@ -23,7 +23,7 @@ import {
     X
 } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 interface SidebarProps {
     isOpen: boolean;
@@ -34,10 +34,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     const router = useRouter()
     const pathname = usePathname()
     const [expandedItems, setExpandedItems] = useState<string[]>([])
+    const prevPathnameRef = useRef(pathname)
 
+    // Only close sidebar on navigation if it was previously open and pathname actually changed
     useEffect(() => {
-        onClose()
-    }, [pathname])
+        if (prevPathnameRef.current !== pathname && isOpen) {
+            onClose()
+        }
+        prevPathnameRef.current = pathname
+    }, [pathname, isOpen, onClose])
 
     const menuItems: MenuItem[] = [
         {
@@ -91,7 +96,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
     const handleNavigation = (href: string) => {
         router.push(href)
-        onClose()
+        // Don't call onClose here - let the useEffect handle it
     }
 
     const handleLogout = () => {
@@ -117,6 +122,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                         } ${level > 0 ? "text-sm text-gray-600" : "text-base font-medium"}`}
                     onClick={(e) => {
                         e.preventDefault()
+                        e.stopPropagation() // Prevent event bubbling
                         if (hasChildren) {
                             toggleExpanded(item.title)
                         } else if (item.href) {
@@ -154,6 +160,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         )
     }
 
+    // Don't render anything if sidebar is not open
     if (!isOpen) return null
 
     return (
@@ -166,20 +173,22 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             />
 
             {/* Sidebar */}
-            <div className="relative w-80 h-screen bg-white shadow-xl z-50">
+            <div
+                className="relative w-80 h-screen bg-white shadow-xl z-50"
+                onClick={(e) => e.stopPropagation()} // Prevent clicks inside sidebar from closing it
+            >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10"
+                    className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10 bg-white"
                     aria-label="Close sidebar"
                 >
-                    <X className="h-5 w-5 !text-white" />
+                    <X className="h-5 w-5 text-gray-600" />
                 </button>
 
                 <div className="flex flex-col h-full">
                     {/* Logo */}
-                    <div className="primary-background text-white h-[100px]">
-
+                    <div className="primary-background text-white h-[100px] flex items-center justify-center">
                         <h2 className="text-lg font-bold text-center text-white">
                             Management System
                         </h2>
