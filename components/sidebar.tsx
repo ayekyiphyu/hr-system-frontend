@@ -22,7 +22,6 @@ import {
     Webhook,
     X
 } from "lucide-react"
-import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
@@ -101,10 +100,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     }
 
     const handleLogout = () => {
-        console.log("Logging out...")
-        router.push("/login")
-        onClose()
-    }
+        localStorage.removeItem('authToken');
+        document.cookie = 'authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        router.push('/');
+    };
 
     const renderMenuItem = (item: MenuItem, level = 0) => {
         const isExpanded = expandedItems.includes(item.title)
@@ -204,14 +203,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div> */}
 
 
-            <Link href="/logout">
+            <div onClick={handleLogout}>
                 <div className="p-4 border-t secondary-background cursor-pointer hover:opacity-80">
                     <div className="flex items-center gap-3">
                         <LogOut className="h-5 w-5 " />
                         <span className="font-medium ">ログアウト</span>
                     </div>
                 </div>
-            </Link>
+            </div>
+
+
         </div>
     )
 }
