@@ -196,7 +196,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     onClick={handleLogout}
                 >
                     <div className="flex items-center gap-3">
-                        <LogOut className="h-5 w-5 !text-white" />
+                        <LogOut className="h-5 w-5 " />
                         <span className="font-medium">ログアウト</span>
                     </div>
                 </Button>

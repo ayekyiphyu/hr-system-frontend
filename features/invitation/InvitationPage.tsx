@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Eye, Mail, User, UserCheck, UserCog } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useState } from 'react';
 
 export default function InvitationForm() {
@@ -24,25 +24,25 @@ export default function InvitationForm() {
             value: 'owner',
             label: 'オーナー',
             description: 'システム全体の管理権限',
-            icon: <UserCog className="w-4 h-4 text-primary" />
+
         },
         {
             value: 'admin',
             label: '管理者',
             description: 'ユーザー管理と設定変更',
-            icon: <UserCheck className="w-4 h-4 text-primary" />
+
         },
         {
             value: 'operator',
             label: 'オペレーター',
             description: '日常業務の実行権限',
-            icon: <User className="w-4 h-4 text-primary" />
+
         },
         {
             value: 'viewer',
             label: '閲覧者',
             description: 'データ参照のみ可能',
-            icon: <Eye className="w-4 h-4 text-primary" />
+
         },
     ];
 
@@ -85,10 +85,10 @@ export default function InvitationForm() {
     };
 
     return (
-        <div className="flex justify-center items-start min-h-screen sm:p-8 !p-0 ">
+        <div className="flex justify-center items-start min-h-screen sm:p-8 !p-0">
             {/* Desktop Version */}
             <div className="hidden md:block w-full ">
-                <Card className="shadow-lg border-0">
+                <Card className=" !border-0 !bg-white">
                     <CardHeader className="pb-2">
                         <div className="flex items-center justify-center gap-3">
                             <Mail className="w-6 h-6 text-primary" />
@@ -155,15 +155,12 @@ export default function InvitationForm() {
                                             <SelectItem
                                                 key={option.value}
                                                 value={option.value}
-                                                className="py-3"
+                                                className=""
                                             >
-                                                <div className="flex items-center gap-3">
-                                                    <div className="bg-primary/10 p-2 rounded-full">
-                                                        {option.icon}
-                                                    </div>
+                                                <div className="flex items-center">
+
                                                     <div>
                                                         <div className="font-medium">{option.label}</div>
-                                                        <div className="text-xs text-gray-500">{option.description}</div>
                                                     </div>
                                                 </div>
                                             </SelectItem>
@@ -289,12 +286,10 @@ export default function InvitationForm() {
                                                 className="py-2"
                                             >
                                                 <div className="flex items-center gap-2">
-                                                    <div className="bg-primary/10 p-1.5 rounded-full">
-                                                        {option.icon}
-                                                    </div>
+
                                                     <div>
                                                         <div className="font-medium text-sm">{option.label}</div>
-                                                        <div className="text-xs text-gray-500">{option.description}</div>
+
                                                     </div>
                                                 </div>
                                             </SelectItem>

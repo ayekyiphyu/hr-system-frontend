@@ -139,7 +139,9 @@ export default function Layout({
                         currentPageTitle={getCurrentPageTitle}
                     />
 
-                    <Footer />
+                    <div className="">
+                        <Footer />
+                    </div>
                 </div>
 
                 {/* Main Content Area */}
