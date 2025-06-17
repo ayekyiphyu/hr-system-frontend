@@ -131,7 +131,7 @@ export default function InvitationForm() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="min-h-screen">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse"></div>

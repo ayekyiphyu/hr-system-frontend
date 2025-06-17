@@ -265,12 +265,12 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="min-h-screen">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse"></div>
+                < div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse" ></div >
                 <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gradient-to-tl from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
+            </div >
 
             <div className="w-full relative z-10">
                 <Card className="w-full pb-0 mb-0">
@@ -521,6 +521,6 @@ export default function RegisterPage() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </div >
     )
 }
