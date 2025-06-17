@@ -59,6 +59,7 @@ export default function LoginPage() {
                     document.cookie = `authToken=${response.token}; path=/`;
                 }
 
+
                 // Redirect based on role
                 if (response.user.isAdmin) {
                     router.push('/dashboard');
