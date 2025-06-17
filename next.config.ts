@@ -8,11 +8,6 @@ const nextConfig: NextConfig = {
     config.resolve.alias["@styles"] = path.join(__dirname, "styles");
     return config;
   },
-  matcher: [
-    "/dashboard/:path*",
-    "/staff/register/:path*",
-    "/staff/invite/:path*",
-  ],
 };
 
 export default nextConfig;
