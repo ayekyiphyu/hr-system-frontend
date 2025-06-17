@@ -65,11 +65,7 @@ export default function Header({
                 <div className="flex items-center">
 
                     <div className="relative">
-                        <img
-                            src="/assest/images/logo01.png"
-                            alt="Logo"
-                            className="w-[60px] h-[auto] "
-                        />
+
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
                     </div>
 

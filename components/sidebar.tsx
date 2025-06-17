@@ -19,8 +19,7 @@ import {
     User,
     UserPlus,
     Users,
-    Webhook,
-    X
+    Webhook
 } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
@@ -177,21 +176,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 className="relative w-80 h-screen bg-white shadow-xl z-50"
                 onClick={(e) => e.stopPropagation()} // Prevent clicks inside sidebar from closing it
             >
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10 bg-white"
-                    aria-label="Close sidebar"
-                >
-                    <X className="h-5 w-5 text-gray-600" />
-                </button>
 
                 <div className="flex flex-col h-full">
                     {/* Logo */}
-                    <div className="primary-background text-white h-[100px] flex items-center justify-center">
-                        <h2 className="text-lg font-bold text-center text-white">
-                            Management System
-                        </h2>
+                    <div className="secondary-background  text-white h-[100px] flex items-center justify-center  shadow-sm">
+                        <img
+                            src="/assest/images/logo01.png"
+                            alt="Logo"
+                            className="w-[60px] h-[auto] "
+                        />
+
                     </div>
 
                     {/* Menu */}
@@ -216,6 +210,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

@@ -109,8 +109,13 @@ export default function Layout({
 
             <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-            <main className={clsx("pt-16 transition-all duration-300", isSidebarOpen && "ml-64")}>
-                {children}
+            <main className={clsx(
+                "pt-[100px] transition-all duration-300 ease-in-out min-h-screen",
+                // Remove margin logic - sidebar is overlay, not pushing content
+            )}>
+                <div className="px-4 sm:px-6 lg:px-8 py-6">
+                    {children}
+                </div>
             </main>
         </div>
     )
