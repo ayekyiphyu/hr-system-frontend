@@ -88,17 +88,10 @@ export default function InvitationForm() {
         <div className="flex justify-center items-start min-h-screen sm:p-8 !p-0">
             {/* Desktop Version */}
             <div className="hidden md:block w-full ">
-                <Card className=" !border-0 !bg-white">
-                    <CardHeader className="pb-2">
-                        <div className="flex items-center justify-center gap-3">
-                            <Mail className="w-6 h-6 text-primary" />
-                            <CardTitle className="text-2xl font-bold text-primary">
-                                YUIMEアカウント招待
-                            </CardTitle>
-                        </div>
-                    </CardHeader>
+                <Card className="!border-0 ">
 
-                    <CardContent className="px-8 pb-8">
+
+                    <CardContent className="bg-gradient-to-br from-white to-green-50/50  sm:p-8 m-4 ">
                         {success && (
                             <Alert className="mb-6 border-green-200 bg-green-50">
                                 <Mail className="w-5 h-5 text-green-600" />
@@ -210,12 +203,12 @@ export default function InvitationForm() {
                                 </Button>
                             </div>
                         </form>
-                    </CardContent>
-                </Card>
-            </div>
+                    </CardContent >
+                </Card >
+            </div >
 
             {/* Mobile Version */}
-            <div className="block md:hidden w-full max-w-md">
+            < div className="block md:hidden w-full max-w-md" >
                 <Card className="shadow-lg border-0">
                     <CardHeader className="pb-2">
                         <div className="flex items-center justify-center gap-2">
@@ -253,7 +246,7 @@ export default function InvitationForm() {
                                     value={formData.emails}
                                     onChange={handleEmailChange}
                                     placeholder="user1@example.com, user2@example.com"
-                                    className="min-h-[100px] text-sm"
+                                    className="min-h-[100px] text-sm "
                                     disabled={isLoading}
                                 />
                                 <div className="flex justify-between mt-1 text-xs">
@@ -336,7 +329,7 @@ export default function InvitationForm() {
                         </form>
                     </CardContent>
                 </Card>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

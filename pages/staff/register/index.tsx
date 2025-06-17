@@ -1,17 +1,21 @@
-
-import Drawer from "@/components/drawer";
+import Layout from "@/components/layout";
 import RegisterPage from "@/features/register/RegisterPage";
+
 
 
 export default function register() {
     return (
         <>
-            <div className="flex flex-col min-h-screen">
-                <Drawer />
-                <div className="flex-1 pt-16 overflow-auto">
+
+
+            <Layout
+                adminName="花子 太郎"
+                notificationCount={5}
+            >
+                <div className="container mx-auto sm:px-6 !p-0">
                     <RegisterPage />
                 </div>
-            </div>
+            </Layout>
         </>
     );
 }

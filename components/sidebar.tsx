@@ -57,7 +57,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             children: [
                 { title: "スタッフ一覧", icon: Users, href: "/staff/list" },
                 { title: "スタッフ登録", icon: UserPlus, href: "/staff/register" },
-                { title: "", icon: Mail, href: "/staff/invite" },
+                { title: "スタッフ招待", icon: Mail, href: "/staff/invite" },
                 { title: "Webhook設定", icon: Webhook, href: "/staff/webhook", badge: "NEW" }
             ]
         },
