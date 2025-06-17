@@ -20,6 +20,7 @@ import { usePathname } from "next/navigation"
 import { useMemo, useState } from "react"
 
 import BurgerMenu from "./burgermenu"
+import Footer from "./footer"
 import Header from "./header"
 import Sidebar from "./sidebar"
 
@@ -137,6 +138,8 @@ export default function Layout({
                         notificationCount={notificationCount}
                         currentPageTitle={getCurrentPageTitle}
                     />
+
+                    <Footer />
                 </div>
 
                 {/* Main Content Area */}
@@ -180,6 +183,8 @@ export default function Layout({
                     </div>
                 </main>
             </div>
+
+
 
             {/* Mobile backdrop - only show on mobile when sidebar is open */}
             {isSidebarOpen && (

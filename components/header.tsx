@@ -48,7 +48,7 @@ export default function Header({
     }
 
     return (
-        <header className="w-full h-[100px] border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
+        <header className="w-full h-[100px] secondary-background border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
             <div className="flex items-center justify-between w-full">
                 {/* Left side - Logo and System Title */}
                 <div className="flex items-center">
@@ -62,7 +62,7 @@ export default function Header({
                     </div>
 
                     <div className="ml-4">
-                        <p className="text-[2rem] text-gray-500 font-bold hidden lg:block">
+                        <p className="text-[2rem] primary-text font-bold hidden lg:block">
                             {currentPageTitle}
                         </p>
                     </div>

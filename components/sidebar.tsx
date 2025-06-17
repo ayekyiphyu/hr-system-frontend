@@ -172,7 +172,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </button>
 
             {/* Logo Section */}
-            <div className="secondary-background text-[1.5rem] font-bold text-black h-[100px] flex items-center justify-center shadow-sm">
+            <div className="primary-background text-[1.5rem] font-bold text-white h-[100px] flex items-center justify-center shadow-sm">
                 {/* <img
                     src="/assest/images/logo01.png"
                     alt="Logo"
@@ -189,14 +189,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
 
             {/* Logout Section */}
-            <div className="p-4 border-t bg-gray-50">
+            <div className="p-4 border-t primary-background">
                 <Button
-                    variant="ghost"
-                    className="w-full justify-start pl-4 py-3 h-auto text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors duration-200"
+                    variant="default"
+                    className="w-full justify-start pl-4 py-3 h-auto !text-white "
                     onClick={handleLogout}
                 >
                     <div className="flex items-center gap-3">
-                        <LogOut className="h-5 w-5" />
+                        <LogOut className="h-5 w-5 !text-white" />
                         <span className="font-medium">ログアウト</span>
                     </div>
                 </Button>
