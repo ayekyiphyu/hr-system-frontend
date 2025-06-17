@@ -20,7 +20,6 @@ import { usePathname } from "next/navigation"
 import { useMemo, useState } from "react"
 
 import BurgerMenu from "./burgermenu"
-import Footer from "./footer"
 import Header from "./header"
 import Sidebar from "./sidebar"
 
@@ -139,9 +138,7 @@ export default function Layout({
                         currentPageTitle={getCurrentPageTitle}
                     />
 
-                    <div className="">
-                        <Footer />
-                    </div>
+
                 </div>
 
                 {/* Main Content Area */}

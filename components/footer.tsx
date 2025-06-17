@@ -8,10 +8,7 @@ export default function Footer() {
                 {/* Flex container that fills the full height */}
                 <div className="flex flex-col sm:flex-row items-center justify-center h-full gap-1 sm:gap-4">
                     {/* Copyright text - centered on mobile, left-aligned on desktop */}
-                    <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left order-2 sm:order-1 leading-tight">
-                        © {new Date().getFullYear()} YUIME. All rights reserved.
-                        Version 1.0.0
-                    </p>
+
                 </div>
             </div>
         </footer>

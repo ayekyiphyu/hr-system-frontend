@@ -48,7 +48,7 @@ export default function Header({
     }
 
     return (
-        <header className="w-full h-[100px] secondary-background border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
+        <header className="w-full h-[60px] secondary-background border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
             <div className="flex items-center justify-between w-full">
                 {/* Left side - Logo and System Title */}
                 <div className="flex items-center">
@@ -56,13 +56,13 @@ export default function Header({
                         <img
                             src="/assest/images/logo01.png"
                             alt="Logo"
-                            className="w-[60px] h-auto"
+                            className="w-[35px] h-auto"
                         />
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
                     </div>
 
                     <div className="ml-4">
-                        <p className="text-[2rem] primary-text font-bold hidden lg:block">
+                        <p className="text-[1rem] primary-text py-3 font-bold hidden lg:block">
                             {currentPageTitle}
                         </p>
                     </div>
