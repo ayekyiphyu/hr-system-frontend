@@ -172,7 +172,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </button>
 
             {/* Logo Section */}
-            <div className="secondary-background text-black h-[100px] flex items-center justify-center shadow-sm">
+            <div className="secondary-background text-[1.5rem] font-bold text-black h-[100px] flex items-center justify-center shadow-sm">
                 {/* <img
                     src="/assest/images/logo01.png"
                     alt="Logo"

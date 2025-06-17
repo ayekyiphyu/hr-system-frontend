@@ -9,7 +9,7 @@ export default function StaffInvite() {
             adminName="花子 太郎"
             notificationCount={5}
         >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="container mx-auto sm:px-6 !p-0">
                 <InvitationPage />
             </div>
         </Layout>

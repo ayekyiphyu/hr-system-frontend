@@ -62,8 +62,7 @@ export default function Header({
                     </div>
 
                     <div className="ml-4">
-
-                        <p className="text-sm text-gray-500 hidden lg:block">
+                        <p className="text-[2rem] text-gray-500 font-bold hidden lg:block">
                             {currentPageTitle}
                         </p>
                     </div>

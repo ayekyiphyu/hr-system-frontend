@@ -172,8 +172,8 @@ export default function Layout({
                         </div>
 
                         {/* Page Content */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 min-h-[600px]">
-                            <div className="p-6">
+                        <div className="">
+                            <div className="">
                                 {children}
                             </div>
                         </div>
