@@ -21,7 +21,7 @@ import {
     Maximize,
     Menu,
     Settings,
-    User,
+    User
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -56,37 +56,46 @@ export default function Header({
     return (
         <header
             className={clsx(
-                "fixed top-0 inset-x-0 h-16 border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 z-40 transition-all duration-300 ease-in-out shadow-sm",
+                "fixed top-0 inset-x-0 h-[100px] border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 z-40 transition-all duration-300 ease-in-out shadow-sm",
                 isSidebarOpen && "lg:ml-80"
             )}
         >
             <div className="flex items-center justify-between w-full">
                 {/* Left side - logo and burger */}
                 <div className="flex items-center">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-gray-100/80 hover:scale-105 transition-all duration-200 rounded-xl border border-gray-200/60 shadow-sm hover:shadow-md backdrop-blur-sm"
-                        onClick={onMenuClick}
-                    >
-                        <Menu className="h-5 w-5 text-gray-700" />
-                        <span className="sr-only">メニューを開く</span>
-                    </Button>
+
+                    <div className="relative">
+                        <img
+                            src="/assest/images/logo01.png"
+                            alt="Logo"
+                            className="w-[60px] h-[auto] "
+                        />
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+                    </div>
+
+
+
 
                     <div className="ml-4 flex items-center gap-4">
-                        <div className="relative">
-                            <img
-                                src="/assest/images/logo.png"
-                                alt="Logo"
-                                className="w-10 h-10 rounded-lg shadow-sm border border-gray-100"
-                            />
-                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
-                        </div>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-gray-100/80 hover:scale-105 transition-all duration-200 rounded-xl border border-gray-200/60 shadow-sm hover:shadow-md backdrop-blur-sm"
+                            onClick={onMenuClick}
+                        >
+                            <Menu className="h-5 w-5 text-gray-700" />
+                            <span className="sr-only">メニューを開く</span>
+                        </Button>
+
+
+
                         <div className="hidden sm:block">
-                            <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent m-0 p-0">
+                            <h1 className="text-xl font-bold text-black !m-0 !p-0">
                                 {currentPageTitle}
                             </h1>
                         </div>
+
+
                     </div>
                 </div>
 

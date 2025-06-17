@@ -170,15 +170,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10"
+                    className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10"
                     aria-label="Close sidebar"
                 >
-                    <X className="h-5 w-5" />
+                    <X className="h-5 w-5 !text-white" />
                 </button>
 
                 <div className="flex flex-col h-full">
                     {/* Logo */}
-                    <div className="p-4 border-b bg-gradient-to-r from-blue-600 to-blue-700">
+                    <div className="primary-background text-white h-[100px]">
 
                         <h2 className="text-lg font-bold text-center text-white">
                             Management System
