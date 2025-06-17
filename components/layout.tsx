@@ -17,7 +17,7 @@ import {
     Webhook
 } from "lucide-react"
 import { usePathname } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
 import BurgerMenu from "./burgermenu"
 import Header from "./header"
@@ -35,13 +35,8 @@ export default function Layout({
     notificationCount = 3
 }: LayoutProps) {
     const pathname = usePathname()
-    // Ensure sidebar starts closed on initial load
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-    // Prevent sidebar from opening on initial mount
-    useEffect(() => {
-        setIsSidebarOpen(false)
-    }, [])
+    // Set sidebar to be open by default
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
     const menuItems: MenuItem[] = [
         {
@@ -101,12 +96,12 @@ export default function Layout({
         return currentPage?.title || "ダッシュボード"
     }, [pathname])
 
-    // Toggle sidebar function
+    // Toggle sidebar function - modified to work properly
     const toggleSidebar = () => {
         setIsSidebarOpen(prev => !prev)
     }
 
-    // Close sidebar function
+    // Close sidebar function - for mobile only
     const closeSidebar = () => {
         setIsSidebarOpen(false)
     }
@@ -117,7 +112,8 @@ export default function Layout({
             <div className={clsx(
                 "fixed left-0 top-0 h-screen bg-white shadow-lg z-40 transition-transform duration-300 ease-in-out",
                 "w-80", // Fixed width
-                isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+                // Always visible on desktop, toggleable on mobile
+                isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
             )}>
                 <Sidebar
                     isOpen={isSidebarOpen}
@@ -128,7 +124,9 @@ export default function Layout({
             {/* Main container - adjusts based on sidebar */}
             <div className={clsx(
                 "flex-1 flex flex-col transition-all duration-300 ease-in-out",
-                isSidebarOpen ? "ml-80" : "ml-0" // Push content when sidebar is open
+                // Account for sidebar on desktop, regardless of mobile state
+                "lg:ml-80",
+                isSidebarOpen ? "ml-0" : "ml-0"
             )}>
                 {/* Header - spans full width of available space */}
                 <div className="sticky top-0 z-30 w-full">
@@ -148,17 +146,18 @@ export default function Layout({
                         <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-4">
-                                    {/* Burger Menu */}
-                                    <BurgerMenu
-                                        isOpen={isSidebarOpen}
-                                        onClick={toggleSidebar}
-                                        variant="default"
-                                        size="md"
-                                    />
+                                    {/* Burger Menu - hidden on large screens */}
+                                    <div className="lg:hidden">
+                                        <BurgerMenu
+                                            isOpen={isSidebarOpen}
+                                            onClick={toggleSidebar}
+                                            variant="default"
+                                            size="md"
+                                        />
+                                    </div>
 
                                     {/* Page Title */}
                                     <div className="flex flex-col">
-
                                         <p className="text-sm text-gray-500 mt-1">
                                             {pathname}
                                         </p>
