@@ -10,7 +10,6 @@ import { Eye, EyeOff, LogIn } from 'lucide-react';
 import router from 'next/router';
 import { useState } from 'react';
 
-
 export default function LoginPage() {
     // 1. State to hold form data
     const [formData, setFormData] = useState<LoginFormData>({
@@ -30,7 +29,6 @@ export default function LoginPage() {
             ...prev,
             [name]: value,
         }));
-        // Clear error when user starts typing
         if (error) setError('');
     };
 
@@ -46,6 +44,7 @@ export default function LoginPage() {
             // Basic validation
             if (!formData.email || !formData.password) {
                 setError('メールアドレスとパスワードを入力してください');
+                setIsLoading(false);
                 return;
             }
 
@@ -54,22 +53,21 @@ export default function LoginPage() {
             if (response.success && response.user) {
                 console.log('Login successful:', response.user);
 
-                // Handle different user roles
+                // Store token if needed
+                if (response.token) {
+                    localStorage.setItem('authToken', response.token);
+                    document.cookie = `authToken=${response.token}; path=/`;
+                }
+
+                // Redirect based on role
                 if (response.user.isAdmin) {
                     router.push('/dashboard');
                 } else if (response.user.isOrganization) {
                     console.log('Redirecting to organization dashboard');
                 } else if (response.user.isJobseeker) {
                     console.log('Redirecting to jobseeker dashboard');
-
                 } else if (response.user.isUser) {
                     console.log('Redirecting to user dashboard');
-
-                }
-
-                // Store token if needed
-                if (response.token) {
-                    localStorage.setItem('authToken', response.token);
                 }
 
             } else {
@@ -147,14 +145,11 @@ export default function LoginPage() {
                                         <Eye className="w-4 h-4" />
                                     )}
                                 </button>
-
-
                             </div>
+
                             <p className="text-xs mt-1 text-right  font-bold text-primary-text">
                                 <a href="/forgot-password" className="text-primary-text underline hover:underline">パスワードを忘れた場合</a>
                             </p>
-
-
 
                             {/* Login Button */}
                             <Button

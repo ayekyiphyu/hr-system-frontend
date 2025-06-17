@@ -318,7 +318,7 @@ export default function PasswordSettingPage({
                             <Button
                                 type="button"
                                 variant="default"
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/dashboard")}
                                 className="w-[150px] h-[46px] back-button"
                             >
 

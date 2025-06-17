@@ -38,7 +38,7 @@ export default function Header({
 
     const handleLogout = () => router.push("/login")
     const handleNotifications = () => router.push("/notifications")
-    const handleSettings = () => router.push("/settings")
+    const handleSettings = () => router.push("/password-setting")
     const handleExpandWindow = () => {
         if (document.fullscreenElement) {
             document.exitFullscreen()
@@ -95,7 +95,7 @@ export default function Header({
                         size="icon"
                         className="hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleSettings}
-                        aria-label="設定"
+                        aria-label="パスワード設定"
                     >
                         <Settings className="h-5 w-5 text-gray-600" />
                     </Button>
@@ -171,7 +171,7 @@ export default function Header({
                                 className="flex items-center p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 cursor-pointer"
                             >
                                 <Settings className="mr-3 h-4 w-4 text-blue-600" />
-                                <span className="font-medium">設定</span>
+                                <span className="font-medium">パスワード設定</span>
                             </DropdownMenuItem>
                             <DropdownMenuSeparator className="bg-gray-100" />
                             <DropdownMenuItem

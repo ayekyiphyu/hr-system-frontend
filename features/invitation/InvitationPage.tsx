@@ -204,7 +204,7 @@ export default function InvitationForm() {
                                                 >
                                                     <div className="flex flex-col items-start">
                                                         <div className="font-medium text-sm">{option.label}</div>
-                                                        <div className="text-xs text-gray-500 mt-1">{option.description}</div>
+
                                                     </div>
                                                 </SelectItem>
                                             ))}
