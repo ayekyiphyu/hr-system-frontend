@@ -92,9 +92,18 @@ export default function LoginPage() {
             <div className="w-full max-w-sm sm:max-w-md">
                 <Card className="shadow-xl border-0 sm:border">
                     <CardHeader className="space-y-1">
-                        <CardTitle className="text-center text-xl sm:text-2xl font-bold text-primary">
-                            ログイン
+
+                        <CardTitle className="text-center text-xl sm:text-2xl font-bold text-primary flex flex-col items-center">
+                            <img
+                                src="/assest/images/logo01.png"
+                                alt="Logo"
+                                className="h-[100px] w-auto " // Adjust size/margin as needed
+                            />
+
                         </CardTitle>
+
+
+
                     </CardHeader>
                     <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">
                         {/* Show error message */}
