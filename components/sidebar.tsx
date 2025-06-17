@@ -22,6 +22,7 @@ import {
     Webhook,
     X
 } from "lucide-react"
+import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
@@ -182,14 +183,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
 
             {/* Menu Section */}
-            <div className="flex-1 overflow-y-auto py-2">
+            <div className="flex-1 overflow-y-auto py-2 secondary-background">
                 {menuItems.map(item => renderMenuItem(item))}
                 <Separator className="my-4" />
                 {bottomMenuItems.map(item => renderMenuItem(item))}
             </div>
 
             {/* Logout Section */}
-            <div className="p-4 border-t ">
+            {/* <div className="p-4 border-t secondary-background">
                 <Button
                     variant="ghost"
                     className="w-full justify-start pl-4 py-3 h-auto "
@@ -200,7 +201,17 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                         <span className="font-medium">ログアウト</span>
                     </div>
                 </Button>
-            </div>
+            </div> */}
+
+
+            <Link href="/logout">
+                <div className="p-4 border-t secondary-background cursor-pointer hover:opacity-80">
+                    <div className="flex items-center gap-3">
+                        <LogOut className="h-5 w-5 " />
+                        <span className="font-medium ">ログアウト</span>
+                    </div>
+                </div>
+            </Link>
         </div>
     )
 }
