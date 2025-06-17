@@ -19,7 +19,8 @@ import {
     User,
     UserPlus,
     Users,
-    Webhook
+    Webhook,
+    X
 } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
@@ -55,7 +56,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             children: [
                 { title: "スタッフ一覧", icon: Users, href: "/staff/list" },
                 { title: "スタッフ登録", icon: UserPlus, href: "/staff/register" },
-                { title: "スタッフ招待", icon: Mail, href: "/staff/invite" },
+                { title: "", icon: Mail, href: "/staff/invite" },
                 { title: "Webhook設定", icon: Webhook, href: "/staff/webhook", badge: "NEW" }
             ]
         },
@@ -159,57 +160,47 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         )
     }
 
-    // Don't render anything if sidebar is not open
-    if (!isOpen) return null
-
     return (
-        <div className="fixed inset-0 z-50 flex">
-            {/* Backdrop */}
-            <div
-                className="fixed inset-0 bg-black/50 transition-opacity duration-300"
+        <div className="h-full w-full bg-white flex flex-col">
+            {/* Close Button - positioned in top right */}
+            <button
                 onClick={onClose}
+                className="absolute top-3 right-3 p-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 z-10 bg-white lg:hidden"
                 aria-label="Close sidebar"
-            />
-
-            {/* Sidebar */}
-            <div
-                className="relative w-80 h-screen bg-white shadow-xl z-50"
-                onClick={(e) => e.stopPropagation()} // Prevent clicks inside sidebar from closing it
             >
+                <X className="h-5 w-5 text-gray-600" />
+            </button>
 
-                <div className="flex flex-col h-full">
-                    {/* Logo */}
-                    <div className="secondary-background  text-white h-[100px] flex items-center justify-center  shadow-sm">
-                        <img
-                            src="/assest/images/logo01.png"
-                            alt="Logo"
-                            className="w-[60px] h-[auto] "
-                        />
-
-                    </div>
-
-                    {/* Menu */}
-                    <div className="flex-1 overflow-y-auto py-2">
-                        {menuItems.map(item => renderMenuItem(item))}
-                        <Separator className="my-4" />
-                        {bottomMenuItems.map(item => renderMenuItem(item))}
-                    </div>
-
-                    {/* Logout */}
-                    <div className="p-4 border-t bg-gray-50">
-                        <Button
-                            variant="ghost"
-                            className="w-full justify-start pl-4 py-3 h-auto text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors duration-200"
-                            onClick={handleLogout}
-                        >
-                            <div className="flex items-center gap-3">
-                                <LogOut className="h-5 w-5" />
-                                <span className="font-medium">ログアウト</span>
-                            </div>
-                        </Button>
-                    </div>
-                </div>
+            {/* Logo Section */}
+            <div className="secondary-background text-black h-[100px] flex items-center justify-center shadow-sm">
+                {/* <img
+                    src="/assest/images/logo01.png"
+                    alt="Logo"
+                    className="w-[60px] h-auto"
+                /> */}
+                HR Matching System
             </div>
-        </div >
+
+            {/* Menu Section */}
+            <div className="flex-1 overflow-y-auto py-2">
+                {menuItems.map(item => renderMenuItem(item))}
+                <Separator className="my-4" />
+                {bottomMenuItems.map(item => renderMenuItem(item))}
+            </div>
+
+            {/* Logout Section */}
+            <div className="p-4 border-t bg-gray-50">
+                <Button
+                    variant="ghost"
+                    className="w-full justify-start pl-4 py-3 h-auto text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors duration-200"
+                    onClick={handleLogout}
+                >
+                    <div className="flex items-center gap-3">
+                        <LogOut className="h-5 w-5" />
+                        <span className="font-medium">ログアウト</span>
+                    </div>
+                </Button>
+            </div>
+        </div>
     )
 }

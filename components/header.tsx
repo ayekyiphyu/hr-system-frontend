@@ -13,22 +13,18 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
 import { HeaderProps } from "@/type/type"
-import clsx from "clsx"
 import {
     Bell,
     ChevronDown,
     LogOut,
     Maximize,
-    Menu,
     Settings,
     User
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 interface HeaderComponentProps extends HeaderProps {
-    onMenuClick: () => void;
     currentPageTitle: string;
-    isSidebarOpen: boolean;
 }
 
 export default function Header({
@@ -36,9 +32,7 @@ export default function Header({
     adminAvatar,
     adminRole = "システム管理者",
     notificationCount = 3,
-    onMenuClick,
-    currentPageTitle,
-    isSidebarOpen
+    currentPageTitle
 }: HeaderComponentProps) {
     const router = useRouter()
 
@@ -54,54 +48,36 @@ export default function Header({
     }
 
     return (
-        <header
-            className={clsx(
-                "fixed top-0 inset-x-0 h-[100px] border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 z-40 transition-all duration-300 ease-in-out shadow-sm",
-                isSidebarOpen && "lg:ml-80"
-            )}
-        >
+        <header className="w-full h-[100px] border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
             <div className="flex items-center justify-between w-full">
-                {/* Left side - logo and burger */}
+                {/* Left side - Logo and System Title */}
                 <div className="flex items-center">
-
                     <div className="relative">
-
+                        <img
+                            src="/assest/images/logo01.png"
+                            alt="Logo"
+                            className="w-[60px] h-auto"
+                        />
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
                     </div>
 
+                    <div className="ml-4">
 
-
-
-                    <div className="ml-4 flex items-center gap-4">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="hover:bg-gray-100/80 hover:scale-105 transition-all duration-200 rounded-xl border border-gray-200/60 shadow-sm hover:shadow-md backdrop-blur-sm"
-                            onClick={onMenuClick}
-                        >
-                            <Menu className="h-5 w-5 text-gray-700" />
-                            <span className="sr-only">メニューを開く</span>
-                        </Button>
-
-
-
-                        <div className="hidden sm:block">
-                            <h1 className="text-xl font-bold text-black !m-0 !p-0">
-                                {currentPageTitle}
-                            </h1>
-                        </div>
-
-
+                        <p className="text-sm text-gray-500 hidden lg:block">
+                            {currentPageTitle}
+                        </p>
                     </div>
                 </div>
 
-                {/* Right side - icons and user */}
+                {/* Right side - User controls */}
                 <div className="flex items-center gap-2">
+                    {/* Notifications */}
                     <Button
                         variant="ghost"
                         size="icon"
                         className="relative hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleNotifications}
+                        aria-label="通知"
                     >
                         <Bell className="h-5 w-5 text-gray-600" />
                         {notificationCount > 0 && (
@@ -114,31 +90,36 @@ export default function Header({
                         )}
                     </Button>
 
+                    {/* Settings */}
                     <Button
                         variant="ghost"
                         size="icon"
                         className="hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleSettings}
+                        aria-label="設定"
                     >
                         <Settings className="h-5 w-5 text-gray-600" />
                     </Button>
 
+                    {/* Fullscreen */}
                     <Button
                         variant="ghost"
                         size="icon"
                         className="hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleExpandWindow}
+                        aria-label="フルスクリーン切り替え"
                     >
                         <Maximize className="h-5 w-5 text-gray-600" />
                     </Button>
 
                     <Separator orientation="vertical" className="h-8 hidden sm:block mx-2 bg-gray-200" />
 
+                    {/* User Dropdown */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
                                 variant="ghost"
-                                className="flex items-center gap-3 px-3 py-2 h-auto hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 rounded-xl border border-transparent hover:border-blue-100 hover:shadow-md"
+                                className="flex items-center gap-3 px-3 py-2 h-auto hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 rounded-xl border border-transparent hover:border-blue-100 hover:shadow-md group"
                             >
                                 <div className="relative">
                                     <Avatar className="h-8 w-8 ring-2 ring-white shadow-md">
@@ -153,7 +134,7 @@ export default function Header({
                                     <span className="text-sm font-semibold text-gray-900">{adminName}</span>
                                     <span className="text-xs text-gray-500 font-medium">{adminRole}</span>
                                 </div>
-                                <ChevronDown className="h-4 w-4 text-gray-400 transition-transform duration-200 group-hover:rotate-180" />
+                                <ChevronDown className="h-4 w-4 text-gray-400 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
