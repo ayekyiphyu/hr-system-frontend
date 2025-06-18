@@ -1,6 +1,6 @@
 'use client';
 
-import { Edit, Eye, Plus, Search, Trash2 } from "lucide-react";
+import { Edit, Eye, Mails, Search, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 export default function StaffListPage() {
@@ -56,35 +56,37 @@ export default function StaffListPage() {
     // Staff Management Component
     const StaffManagement = () => (
         <div className="p-0">
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-                <div className="p-4 border-b flex justify-between items-center">
-                    <div className="flex items-center space-x-4">
-                        <div className="relative w-64">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                            <input
-                                type="text"
-                                placeholder="スタッフを検索..."
-                                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            />
-                        </div>
-                        <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <option>すべてのステータス</option>
-                            <option>有効</option>
-                            <option>無効</option>
-                        </select>
-                        <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <option>すべての権限</option>
-                            <option>オーナー</option>
-                            <option>管理者</option>
-                            <option>オペレーター</option>
-                            <option>ビューアー</option>
-                        </select>
+
+            <div className="p-4 border-b flex justify-between items-center border border-red-500 rounded-[10px]">
+                <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary flex items-center">
+                    <Mails className="h-4 w-4 mr-2 !text-white" />
+                    YUIMEアカウント招待
+                </button>
+                <div className="flex items-center space-x-4">
+                    <div className="relative w-64">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <input
+                            type="text"
+                            placeholder="スタッフを検索..."
+                            className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
                     </div>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center">
-                        <Plus className="h-4 w-4 mr-2" />
-                        新規登録
-                    </button>
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option>すべてのステータス</option>
+                        <option>有効</option>
+                        <option>無効</option>
+                    </select>
+                    <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option>すべての権限</option>
+                        <option>オーナー</option>
+                        <option>管理者</option>
+                        <option>オペレーター</option>
+                        <option>ビューアー</option>
+                    </select>
                 </div>
+            </div>
+            <div className="bg-white rounded-lg shadow overflow-hidden mt-[40px]">
+
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">

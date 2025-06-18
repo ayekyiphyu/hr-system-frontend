@@ -119,7 +119,7 @@
 
 
 .primary-text {
-  color: #dc2626
+  color: #be4337
 }
 
 .text-black {
@@ -127,8 +127,14 @@
 }
 
 .primary-background {
-  background-color: #dc2626
+  background-color: #be4337
 }
+
+.bg-primary {
+  background-color: #be4337
+}
+
+
 
 .secondary-background {
   background-color: #FFF8F8

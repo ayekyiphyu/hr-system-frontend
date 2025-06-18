@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import StaffListsPage from "@/features/stafflists/StaffListsPage";
+import StaffListsPage from "@/features/staff-lists/StaffListsPage";
 
 export default function StaffLists() {
     return (
