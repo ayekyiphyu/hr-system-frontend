@@ -97,13 +97,10 @@ export default function LoginPage() {
                             <img
                                 src="/assest/images/logo01.png"
                                 alt="Logo"
-                                className="h-[100px] w-auto " // Adjust size/margin as needed
+                                className="h-[100px] w-auto "
                             />
-
+                            <p className='pt-[1rem] pb-[0rem]'>ログインン</p>
                         </CardTitle>
-
-
-
                     </CardHeader>
                     <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">
                         {/* Show error message */}
