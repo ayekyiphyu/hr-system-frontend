@@ -81,3 +81,14 @@ export interface InvitationFormData {
   role: UserRole | "";
   message?: string;
 }
+
+//for staff-lists
+
+export interface StaffMember {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  lastLogin: string;
+}
