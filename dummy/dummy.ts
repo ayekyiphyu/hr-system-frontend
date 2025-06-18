@@ -63,7 +63,7 @@ export const dummyLogin = async (
   if (!user) {
     return {
       success: false,
-      message: "ユーザーが見つかりません",
+      message: "メールアドレスまたはパスワードが正しくありません。",
     };
   }
 
