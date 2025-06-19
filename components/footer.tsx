@@ -7,7 +7,8 @@ export default function Footer() {
             <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 h-full">
                 {/* Flex container that fills the full height */}
                 <div className="flex flex-col sm:flex-row items-center justify-center h-full gap-1 sm:gap-4">
-                    {/* Copyright text - centered on mobile, left-aligned on desktop */}
+
+                    2025Yuimecompany
 
                 </div>
             </div>

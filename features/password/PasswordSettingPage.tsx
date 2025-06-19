@@ -153,199 +153,209 @@ export default function PasswordSettingPage({
 
     if (isSuccess) {
         return (
-            <div className="min-h-screen flex items-center justify-center p-4">
-                <Card className="w-full max-w-md mx-auto">
-                    <CardContent className="bg-secondary mx-auto p-8 text-center">
-                        <div className="flex justify-center mb-6">
-                            <CheckCircle className="h-16 w-16 text-green-500" />
-                        </div>
-                        <CardTitle className="text-2xl mb-4">
-                            パスワードが設定されました
-                        </CardTitle>
-                        <CardDescription className="text-muted-foreground mb-6">
-                            {mode === "reset"
-                                ? "新しいパスワードが正常に設定されました。ログインページに移動します。"
-                                : "パスワードが正常に変更されました。"
-                            }
-                        </CardDescription>
-                    </CardContent>
-                </Card>
+            <div className="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
+                <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-200/30 to-emerald-200/30 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-teal-200/30 to-cyan-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                </div>
+
+                <div className="w-full max-w-sm sm:max-w-md relative z-10">
+
+
+                    <Card className="shadow-2xl border-0 sm:border backdrop-blur-sm bg-white/95">
+                        <CardContent className="bg-gradient-to-br from-white to-green-50/50 p-6 sm:p-8 m-4 sm:m-[46px] text-center">
+                            <div className="flex justify-center mb-4 sm:mb-6 relative">
+                                <CheckCircle className="h-16 w-16 text-green-500" />
+                            </div>
+                            <CardTitle className="text-2xl mb-4">
+                                パスワードが設定されました
+                            </CardTitle>
+                            <CardDescription className="text-muted-foreground mb-6">
+                                {mode === "reset"
+                                    ? "新しいパスワードが正常に設定されました。ログインページに移動します。"
+                                    : "パスワードが正常に変更されました。"
+                                }
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
+
+                </div>
+
+
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
-            <Card className="w-full max-w-md mx-auto">
-                <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold">
-                        {mode === "reset" ? "パスワード設定する" : "パスワードを変更"}
-                    </CardTitle>
-                </CardHeader>
+        <div className="min-h-screen">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                < div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse" ></div >
+                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gradient-to-tl from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div >
 
-                <CardContent className="bg-white mx-auto p-6">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {error && (
-                            <Alert variant="destructive">
-                                <AlertDescription>{error}</AlertDescription>
-                            </Alert>
-                        )}
+            <div className="w-full relative z-10">
 
-                        {/* Current Password (only for change mode) */}
-                        {mode === "change" && (
+                <Card className="w-full pb-0 mb-0">
+                    <CardHeader className="text-center">
+                        <CardTitle className="text-2xl font-bold">
+                            {mode === "reset" ? "パスワード設定する" : "パスワードを変更"}
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="bg-gradient-to-br from-white to-gray-50/30 m-4 sm:mt-[0px] p-4 sm:p-6 rounded-lg">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            {error && (
+                                <Alert variant="destructive">
+                                    <AlertDescription>{error}</AlertDescription>
+                                </Alert>
+                            )}
+
+                            {/* Current Password (only for change mode) */}
+                            {mode === "change" && (
+                                <div className="space-y-2">
+                                    <div className="relative">
+                                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
+                                        <Input
+                                            id="currentPassword"
+                                            name="currentPassword"
+                                            type={showPasswords.current ? "text" : "password"}
+                                            value={formData.currentPassword}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="bg-white text-primary h-[46px] pl-10 pr-10 placeholder:text-muted-foreground"
+                                            placeholder="現在のパスワード *"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => togglePasswordVisibility("current")}
+                                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                        >
+                                            {showPasswords.current ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 " />}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* New Password */}
                             <div className="space-y-2">
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
                                     <Input
-                                        id="currentPassword"
-                                        name="currentPassword"
-                                        type={showPasswords.current ? "text" : "password"}
-                                        value={formData.currentPassword}
+                                        id="newPassword"
+                                        name="newPassword"
+                                        type={showPasswords.new ? "text" : "password"}
+                                        value={formData.newPassword}
                                         onChange={handleInputChange}
                                         required
                                         className="bg-white text-primary h-[46px] pl-10 pr-10 placeholder:text-muted-foreground"
-                                        placeholder="現在のパスワード *"
+                                        placeholder="新しいパスワード *"
                                     />
                                     <button
                                         type="button"
-                                        onClick={() => togglePasswordVisibility("current")}
+                                        onClick={() => togglePasswordVisibility("new")}
                                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                                     >
-                                        {showPasswords.current ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 " />}
+                                        {showPasswords.new ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 primary-text" />}
                                     </button>
                                 </div>
-                            </div>
-                        )}
 
-                        {/* New Password */}
-                        <div className="space-y-2">
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
-                                <Input
-                                    id="newPassword"
-                                    name="newPassword"
-                                    type={showPasswords.new ? "text" : "password"}
-                                    value={formData.newPassword}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="bg-white text-primary h-[46px] pl-10 pr-10 placeholder:text-muted-foreground"
-                                    placeholder="新しいパスワード *"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => togglePasswordVisibility("new")}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                                >
-                                    {showPasswords.new ? <EyeOff className="h-4 w-4 primary-text" /> : <Eye className="h-4 w-4 primary-text" />}
-                                </button>
-                            </div>
-
-                            {/* Password Strength Indicator */}
-                            {formData.newPassword && (
-                                <div className="space-y-2">
-                                    <div className="flex space-x-1">
-                                        {[1, 2, 3, 4, 5].map((level) => (
-                                            <div
-                                                key={level}
-                                                className={`h-2 w-full rounded ${passwordStrength.score >= level
-                                                    ? passwordStrength.score <= 2
-                                                        ? "bg-red-500"
-                                                        : passwordStrength.score <= 3
-                                                            ? "bg-yellow-500"
-                                                            : "bg-green-500"
-                                                    : "bg-gray-200"
-                                                    }`}
-                                            />
-                                        ))}
-                                    </div>
-                                    {passwordStrength.feedback.length > 0 && (
-                                        <ul className="text-sm text-muted-foreground space-y-1">
-                                            {passwordStrength.feedback.map((item, index) => (
-                                                <li key={index} className="flex items-center space-x-2">
-                                                    <X className="h-3 w-3 text-red-500" />
-                                                    <span>{item}</span>
-                                                </li>
+                                {/* Password Strength Indicator */}
+                                {formData.newPassword && (
+                                    <div className="space-y-2">
+                                        <div className="flex space-x-1">
+                                            {[1, 2, 3, 4, 5].map((level) => (
+                                                <div
+                                                    key={level}
+                                                    className={`h-2 w-full rounded ${passwordStrength.score >= level
+                                                        ? passwordStrength.score <= 2
+                                                            ? "bg-red-500"
+                                                            : passwordStrength.score <= 3
+                                                                ? "bg-yellow-500"
+                                                                : "bg-green-500"
+                                                        : "bg-gray-200"
+                                                        }`}
+                                                />
                                             ))}
-                                        </ul>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Confirm Password */}
-                        <div className="space-y-2">
-                            <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
-                                <Input
-                                    id="confirmPassword"
-                                    name="confirmPassword"
-                                    type={showPasswords.confirm ? "text" : "password"}
-                                    value={formData.confirmPassword}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="bg-white text-primary h-[46px] pl-10 pr-10 placeholder:text-muted-foreground"
-                                    placeholder="パスワード確認 *"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => togglePasswordVisibility("confirm")}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                                >
-                                    {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4 primary-text" />}
-                                </button>
+                                        </div>
+                                        {passwordStrength.feedback.length > 0 && (
+                                            <ul className="text-sm text-muted-foreground space-y-1">
+                                                {passwordStrength.feedback.map((item, index) => (
+                                                    <li key={index} className="flex items-center space-x-2">
+                                                        <X className="h-3 w-3 text-red-500" />
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Password Match Indicator */}
-                            {formData.confirmPassword && (
-                                <div className={`text-sm flex items-center space-x-2 ${passwordsMatch ? "text-green-600" : "text-red-600"
-                                    }`}>
-                                    {passwordsMatch ? (
-                                        <>
-                                            <CheckCircle className="h-3 w-3" />
-                                            <span>パスワードが一致しています</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <X className="h-3 w-3" />
-                                            <span>パスワードが一致しません</span>
-                                        </>
-                                    )}
+                            {/* Confirm Password */}
+                            <div className="space-y-2">
+                                <div className="relative">
+                                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground primary-text" />
+                                    <Input
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        type={showPasswords.confirm ? "text" : "password"}
+                                        value={formData.confirmPassword}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="bg-white text-primary h-[46px] pl-10 pr-10 placeholder:text-muted-foreground"
+                                        placeholder="パスワード確認 *"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => togglePasswordVisibility("confirm")}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                    >
+                                        {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4 primary-text" />}
+                                    </button>
                                 </div>
-                            )}
-                        </div>
 
-                        <div className="flex flex-row space-y-3 gap-3.5 justify-between sm:justify-end">
-                            <Button
-                                type="button"
-                                variant="default"
-                                onClick={() => router.push("/dashboard")}
-                                className="w-[150px] h-[46px] back-button"
-                            >
+                                {/* Password Match Indicator */}
+                                {formData.confirmPassword && (
+                                    <div className={`text-sm flex items-center space-x-2 ${passwordsMatch ? "text-green-600" : "text-red-600"
+                                        }`}>
+                                        {passwordsMatch ? (
+                                            <>
+                                                <CheckCircle className="h-3 w-3" />
+                                                <span>パスワードが一致しています</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <X className="h-3 w-3" />
+                                                <span>パスワードが一致しません</span>
+                                            </>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
 
-                                戻る
-                            </Button>
-                            <Button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-[150px] h-[46px]"
-                            >
-                                {isLoading ? "設定中..." : "設定する"}
-                            </Button>
-
-                            {onCancel && (
+                            <div className="flex flex-row sm:flex-row justify-center items-center gap-4">
                                 <Button
                                     type="button"
-                                    variant="outline"
-                                    onClick={onCancel}
-                                    className="w-full h-[46px]"
+                                    variant="default"
+                                    onClick={() => router.push("/dashboard")}
+                                    className="w-[150px] h-[46px] back-button"
                                 >
-                                    キャンセル
+                                    戻る
                                 </Button>
-                            )}
-                        </div>
-                    </form>
-                </CardContent>
-            </Card>
+                                <Button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className="w-[150px] h-[46px]"
+                                >
+                                    {isLoading ? "設定中..." : "設定する"}
+                                </Button>
+                            </div>
+                        </form>
+                    </CardContent>
+                </Card>
+            </div>
+
         </div>
     )
 }
