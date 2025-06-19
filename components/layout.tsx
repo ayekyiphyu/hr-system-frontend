@@ -49,7 +49,7 @@ export default function Layout({
             title: "スタッフ管理",
             icon: Users,
             children: [
-                { title: "スタッフ一覧", icon: Users, href: "/staff/list" },
+                { title: "スタッフ一覧", icon: Users, href: "/staff/staff-lists" },
                 { title: "スタッフ登録", icon: UserPlus, href: "/staff/register" },
                 { title: "アカウント招待", icon: Mail, href: "/staff/invite" },
                 { title: "Webhook設定", icon: Webhook, href: "/staff/webhook", badge: "NEW" }

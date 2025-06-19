@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronDown, Edit, Eye, Filter, Mails, Search, Trash2 } from "lucide-react";
+import router from "next/router";
 import { useEffect, useState } from "react";
 
 // Type definition
@@ -68,7 +69,7 @@ export default function StaffListPage() {
     });
 
     const handleInviteClick = () => {
-        console.log('Navigate to invite page');
+        router.push('/staff/invite')
     };
 
     // Clear all filters function
