@@ -1,5 +1,5 @@
 'use client';
-export default function SettingPage() {
+export default function StaffSettingPage() {
     return (
         <div>
             スタッフ設定

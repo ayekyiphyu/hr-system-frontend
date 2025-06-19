@@ -291,10 +291,7 @@ export default function Drawer({
                                     </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={() => router.push("/profile")}>
-                                    <User className="mr-2 h-4 w-4" />
-                                    <span>プロフィール</span>
-                                </DropdownMenuItem>
+
                                 <DropdownMenuItem onClick={handleSettings}>
                                     <Settings className="mr-2 h-4 w-4" />
                                     <span>設定</span>

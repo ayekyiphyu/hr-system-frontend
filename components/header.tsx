@@ -18,8 +18,7 @@ import {
     ChevronDown,
     LogOut,
     Maximize,
-    Settings,
-    User
+    Settings
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -38,7 +37,7 @@ export default function Header({
 
     const handleLogout = () => router.push("/login")
     const handleNotifications = () => router.push("/notifications")
-    const handleSettings = () => router.push("/password-setting")
+    const handleSettings = () => router.push("/staff/staff-setting")
     const handleExpandWindow = () => {
         if (document.fullscreenElement) {
             document.exitFullscreen()
@@ -159,13 +158,7 @@ export default function Header({
                                 </div>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator className="bg-gray-100" />
-                            <DropdownMenuItem
-                                onClick={() => router.push("/profile")}
-                                className="flex items-center p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 cursor-pointer"
-                            >
-                                <User className="mr-3 h-4 w-4 text-blue-600" />
-                                <span className="font-medium">プロフィール</span>
-                            </DropdownMenuItem>
+
                             <DropdownMenuItem
                                 onClick={handleSettings}
                                 className="flex items-center p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 cursor-pointer"

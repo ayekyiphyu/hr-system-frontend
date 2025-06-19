@@ -20,6 +20,7 @@ import { usePathname } from "next/navigation"
 import { useMemo, useState } from "react"
 
 import BurgerMenu from "./burgermenu"
+import Footer from "./footer"
 import Header from "./header"
 import Sidebar from "./sidebar"
 
@@ -181,8 +182,9 @@ export default function Layout({
                         </div>
                     </div>
                 </main>
-            </div>
 
+            </div>
+            <Footer />
 
 
             {/* Mobile backdrop - only show on mobile when sidebar is open */}
@@ -193,6 +195,7 @@ export default function Layout({
                     aria-hidden="true"
                 />
             )}
+
         </div>
     )
 }
