@@ -38,6 +38,7 @@ export default function Header({
     const handleLogout = () => router.push("/login")
     const handleNotifications = () => router.push("/notifications")
     const handleSettings = () => router.push("/staff/staff-setting")
+    const handlePasswordSettings = () => router.push("/password-setting")
     const handleExpandWindow = () => {
         if (document.fullscreenElement) {
             document.exitFullscreen()
@@ -160,7 +161,7 @@ export default function Header({
                             <DropdownMenuSeparator className="bg-gray-100" />
 
                             <DropdownMenuItem
-                                onClick={handleSettings}
+                                onClick={handlePasswordSettings}
                                 className="flex items-center p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 cursor-pointer"
                             >
                                 <Settings className="mr-3 h-4 w-4 text-blue-600" />
