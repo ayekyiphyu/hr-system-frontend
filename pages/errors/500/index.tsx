@@ -1,9 +1,14 @@
-const Custom500 = () => {
-    return (
-        <div>
-            <h1>500 - Page Not Found</h1>
-        </div>
-    );
-};
+import Custom500Page from "@/features/errors/500/Custom500Page";
 
-export default Custom500;
+
+export default function Custom404() {
+    return (
+
+        <div className="container mx-auto sm:px-6 !p-0">
+            <Custom500Page />
+        </div>
+
+
+
+    );
+}
