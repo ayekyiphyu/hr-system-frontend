@@ -126,7 +126,7 @@ export default function StaffListPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/30 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/30 p-0">
             <div className="space-y-6">
                 {/* Header Section */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
@@ -243,60 +243,60 @@ export default function StaffListPage() {
                 </div>
 
                 {/* Table Section */}
-                <div className="max-h-[600px] overflow-y-auto overscroll-y-auto">
-                    <div className="overflow-x-auto overscroll-x-auto">
-                        <table className="min-w-full divide-y divide-gray-200">
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden !p-0">
+                    <div className="overflow-x-auto overscroll-x-contain">
+                        <table className="w-full min-w-[800px] divide-y divide-gray-200">
                             <thead className="sticky top-0 z-10">
                                 <tr className="common-bg">
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
                                         氏名
                                     </th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[220px]">
                                         メールアドレス
                                     </th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[100px]">
                                         権限
                                     </th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[100px]">
                                         ステータス
                                     </th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white  min-w-[140px]">
                                         最終ログイン
                                     </th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white  min-w-[120px]">
                                         操作
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="bg-white divide-y divide-gray-200">
                                 {filteredStaffMembers.length > 0 ? (
                                     filteredStaffMembers.map((staff, index) => (
-                                        <tr key={staff.id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
-                                            <td className="px-6 py-4 ">
+                                        <tr key={staff.id} className={`hover:bg-gray-50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+                                            <td className="px-4 py-3 ">
                                                 <div className="flex items-center">
-                                                    <div className="flex-shrink-0 h-10 w-10">
-                                                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex items-center justify-center text-white font-medium text-sm">
+                                                    <div className="flex-shrink-0 h-8 w-8">
+                                                        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex items-center justify-center text-white font-medium text-xs">
                                                             {staff.name.charAt(0)}
                                                         </div>
                                                     </div>
-                                                    <div className="ml-4">
+                                                    <div className="ml-3">
                                                         <div className="text-sm font-medium text-gray-900">{staff.name}</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">
+                                            <td className="text-sm text-gray-600">
                                                 {staff.email}
                                             </td>
-                                            <td className="px-6 py-4">
+                                            <td className="">
                                                 <StatusBadge status={staff.role} />
                                             </td>
-                                            <td className="px-6 py-4 ">
+                                            <td className=" ">
                                                 <StatusBadge status={staff.status} />
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">
+                                            <td className="text-sm text-gray-600 ">
                                                 {staff.lastLogin}
                                             </td>
-                                            <td className="px-6 py-4 ">
+                                            <td className=" ">
                                                 <ActionButtons staff={staff} />
                                             </td>
                                         </tr>
@@ -304,9 +304,9 @@ export default function StaffListPage() {
                                 ) : (
                                     <tr>
                                         <td colSpan={6} className="px-6 py-12 text-center">
-                                            <div className="flex flex-col items-center justify-center space-y-3">
-                                                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                                                    <Search className="h-8 w-8 text-gray-400" />
+                                            <div className="flex flex-col items-center justify-center space-y-2">
+                                                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                                                    <Search className="h-6 w-6 text-gray-400" />
                                                 </div>
                                                 <div className="text-sm text-gray-500">
                                                     {searchValue || statusFilter !== 'すべてのステータス' || roleFilter !== 'すべての権限'
@@ -316,7 +316,7 @@ export default function StaffListPage() {
                                                 {(searchValue || statusFilter !== 'すべてのステータス' || roleFilter !== 'すべての権限') && (
                                                     <button
                                                         onClick={clearAllFilters}
-                                                        className="text-sm text-blue-600 hover:text-blue-800 underline"
+                                                        className="text-xs text-blue-600 hover:text-blue-800 underline"
                                                     >
                                                         フィルターをクリア
                                                     </button>
@@ -328,37 +328,9 @@ export default function StaffListPage() {
                             </tbody>
                         </table>
                     </div>
-
-                    {/* Pagination */}
-                    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-                        <div className="flex items-center text-sm text-gray-600">
-                            <span>
-                                {filteredStaffMembers.length > 0
-                                    ? `${filteredStaffMembers.length} 名のスタッフ${searchValue || statusFilter !== 'すべてのステータス' || roleFilter !== 'すべての権限' ? ' (フィルター済み)' : ''}`
-                                    : '0 名のスタッフ'}
-                            </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <button
-                                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
-                                disabled={filteredStaffMembers.length === 0}
-                            >
-                                前へ
-                            </button>
-                            <span className="px-4 py-2 common-bg text-white rounded-lg text-sm font-medium">
-                                1
-                            </span>
-                            <button
-                                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
-                                disabled={filteredStaffMembers.length === 0}
-                            >
-                                次へ
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }
