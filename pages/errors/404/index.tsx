@@ -1,9 +1,6 @@
-const Custom404 = () => {
-    return (
-        <div>
-            <h1>404 - Page Not Found</h1>
-        </div>
-    );
-};
+export default function Custom404Page() {
+    <div className="container mx-auto sm:px-6 !p-0">
 
-export default Custom404;
+
+    </div>
+}

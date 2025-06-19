@@ -188,21 +188,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 {bottomMenuItems.map(item => renderMenuItem(item))}
             </div>
 
-            {/* Logout Section */}
-            {/* <div className="p-4 border-t secondary-background">
-                <Button
-                    variant="ghost"
-                    className="w-full justify-start pl-4 py-3 h-auto "
-                    onClick={handleLogout}
-                >
-                    <div className="flex items-center gap-3">
-                        <LogOut className="h-5 w-5 " />
-                        <span className="font-medium">ログアウト</span>
-                    </div>
-                </Button>
-            </div> */}
-
-
             <div onClick={handleLogout}>
                 <div className="p-4 border-t secondary-background cursor-pointer hover:opacity-80">
                     <div className="flex items-center gap-3">

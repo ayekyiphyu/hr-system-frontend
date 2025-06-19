@@ -1,3 +1,4 @@
+import router from 'next/router';
 import { useState } from 'react';
 
 export default function UserEditForm() {
@@ -28,17 +29,7 @@ export default function UserEditForm() {
         }, 1500);
     };
 
-    const handleCancel = () => {
-        // Reset form or navigate back
-        setFormData({
-            name: '田中太郎',
-            authority: '管理者',
-            password: '',
-            group: '開発部',
-            email: 'tanaka@yuimecompany.com',
-            phone: '090-1234-5678'
-        });
-    };
+
 
     return (
         <div className="w-full mx-auto secondary-background p-6 rounded-lg shadow-sm border">
@@ -50,7 +41,7 @@ export default function UserEditForm() {
                     <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                         氏名
                     </div>
-                    <div className="text-gray-500">:</div>
+                    <div className="text-gray-500 font-bold">:</div>
                     <input
                         type="text"
                         value={formData.name}
@@ -65,7 +56,7 @@ export default function UserEditForm() {
                     <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                         権限
                     </div>
-                    <div className="text-gray-500">:</div>
+                    <div className="text-gray-500 font-bold">:</div>
                     <input
                         type="text"
                         value={formData.authority}
@@ -80,7 +71,7 @@ export default function UserEditForm() {
                     <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                         パスワード
                     </div>
-                    <div className="text-gray-500">:</div>
+                    <div className="text-gray-500 font-bold">:</div>
                     <input
                         type="password"
                         value={formData.password}
@@ -96,7 +87,7 @@ export default function UserEditForm() {
                     <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                         所属グループ
                     </div>
-                    <div className="text-gray-500">:</div>
+                    <div className="text-gray-500 font-bold">:</div>
                     <input
                         type="text"
                         value={formData.group}
@@ -112,7 +103,7 @@ export default function UserEditForm() {
                     <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                         メールアドレス
                     </div>
-                    <div className="text-gray-500">:</div>
+                    <div className="text-gray-500 font-bold">:</div>
                     <input
                         type="email"
                         value={formData.email}
@@ -128,7 +119,7 @@ export default function UserEditForm() {
                         <div className="w-[120px] text-sm font-medium text-gray-700 text-left">
                             電話番号
                         </div>
-                        <div className="text-gray-500">:</div>
+                        <div className="text-gray-500 font-bold">:</div>
                         <input
                             type="tel"
                             value={formData.phone}
@@ -137,7 +128,7 @@ export default function UserEditForm() {
                             placeholder="電話番号を入力"
                         />
                     </div>
-                    <p className="text-xs primary-text ml-[140px]">※ 電話番号のみ編集可能です</p>
+                    <p className="text-xs primary-text ml-[140px] font-bold">※ 電話番号のみ編集可能です</p>
                 </div>
             </div>
 
@@ -145,10 +136,12 @@ export default function UserEditForm() {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
                 <button
                     type="button"
-                    onClick={handleCancel}
+                    onClick={() =>
+                        router.push('/dashboard')
+                    }
                     className="w-[150px] h-[46px] px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-colors"
                 >
-                    キャンセル
+                    戻る
                 </button>
                 <button
                     type="button"
