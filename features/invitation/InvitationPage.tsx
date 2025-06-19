@@ -144,7 +144,7 @@ export default function InvitationForm() {
                         <div className="p-0">
                             <CardTitle className="text-2xl font-bold flex items-center justify-center gap-3">
 
-                                YUIMEアカウント招待
+                                アカウント招待
                             </CardTitle>
                         </div>
                     </CardHeader>

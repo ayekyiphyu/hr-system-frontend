@@ -99,7 +99,7 @@ export default function LoginPage() {
                                 alt="Logo"
                                 className="h-[100px] w-auto "
                             />
-                            <p className='pt-[1rem] pb-[0rem]'>ログインン</p>
+                            <p className='pt-[1rem] pb-[0rem]'>ログイン</p>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">

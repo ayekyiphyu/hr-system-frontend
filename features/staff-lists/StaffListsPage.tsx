@@ -142,7 +142,7 @@ export default function StaffListPage() {
                                     className="group relative inline-flex items-center px-6 py-3 common-bg text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
                                 >
                                     <Mails className="h-4 w-4 mr-2 !text-white" />
-                                    YUIMEアカウント招待
+                                    アカウント招待
                                 </button>
                             </div>
 
