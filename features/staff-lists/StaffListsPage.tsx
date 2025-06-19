@@ -139,9 +139,9 @@ export default function StaffListPage() {
                             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                                 <button
                                     onClick={handleInviteClick}
-                                    className="group relative inline-flex items-center px-6 py-3 common-bg text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                                    className="group relative inline-flex items-center p-[8px] w-[px] common-bg text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
                                 >
-                                    <Mails className="h-4 w-4 mr-2 !text-white" />
+                                    <Mails className="h-4 !text-white" />
                                     アカウント招待
                                 </button>
                             </div>
@@ -243,10 +243,10 @@ export default function StaffListPage() {
                 </div>
 
                 {/* Table Section */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div className="overflow-x-auto">
+                <div className="max-h-[600px] overflow-y-auto overscroll-y-auto">
+                    <div className="overflow-x-auto overscroll-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
-                            <thead>
+                            <thead className="sticky top-0 z-10">
                                 <tr className="common-bg">
                                     <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                                         氏名
@@ -268,11 +268,11 @@ export default function StaffListPage() {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-100">
+                            <tbody>
                                 {filteredStaffMembers.length > 0 ? (
                                     filteredStaffMembers.map((staff, index) => (
                                         <tr key={staff.id} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
+                                            <td className="px-6 py-4 ">
                                                 <div className="flex items-center">
                                                     <div className="flex-shrink-0 h-10 w-10">
                                                         <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex items-center justify-center text-white font-medium text-sm">
@@ -284,19 +284,19 @@ export default function StaffListPage() {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            <td className="px-6 py-4 text-sm text-gray-600">
                                                 {staff.email}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
+                                            <td className="px-6 py-4">
                                                 <StatusBadge status={staff.role} />
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
+                                            <td className="px-6 py-4 ">
                                                 <StatusBadge status={staff.status} />
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            <td className="px-6 py-4 text-sm text-gray-600">
                                                 {staff.lastLogin}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
+                                            <td className="px-6 py-4 ">
                                                 <ActionButtons staff={staff} />
                                             </td>
                                         </tr>
@@ -357,6 +357,7 @@ export default function StaffListPage() {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );
