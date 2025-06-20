@@ -1,5 +1,6 @@
 import router from 'next/router';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function UserEditForm() {
     const [formData, setFormData] = useState({
@@ -21,12 +22,9 @@ export default function UserEditForm() {
     };
 
     const handleUpdate = async () => {
-        setIsLoading(true);
-        // Simulate API call
-        setTimeout(() => {
-            alert('更新が完了しました');
-            setIsLoading(false);
-        }, 1500);
+        toast.success("更新完了", {
+            description: "電話番号を変更しました。",
+        });
     };
 
 
