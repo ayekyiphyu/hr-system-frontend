@@ -51,7 +51,7 @@ export default function LoginPage() {
             const response = await dummyLogin(formData);
 
             if (response.success && response.user) {
-                console.log('Login successful:', response.user);
+                localStorage.setItem('authUser', JSON.stringify(response.user));
 
                 // Store token if needed
                 if (response.token) {
@@ -64,7 +64,7 @@ export default function LoginPage() {
                 if (response.user.isAdmin) {
                     router.push('/dashboard');
                 } else if (response.user.isOrganization) {
-                    console.log('Redirecting to organization dashboard');
+                    router.push('/organization/dashboard');
                 } else if (response.user.isJobseeker) {
                     console.log('Redirecting to jobseeker dashboard');
                 } else if (response.user.isUser) {

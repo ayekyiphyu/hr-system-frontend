@@ -29,7 +29,7 @@ export default function WebhookPage() {
                         <form className="space-y-6">
                             {/* Webhook URL */}
                             <div className="space-y-2">
-                                <Label htmlFor="webhook-url" className="text-sm font-medium">
+                                <Label htmlFor="webhook-url" className="text-sm font-medium text-black">
                                     Slack Webhook URL
                                 </Label>
                                 <Input
@@ -44,10 +44,10 @@ export default function WebhookPage() {
 
                             {/* Notification Type */}
                             <div className="flex gap-5 items-start">
-                                <Label className="text-sm font-medium">
+                                <Label className="text-sm font-medium text-black">
                                     通知タイプ
                                 </Label>
-                                <div className="space-y-4">
+                                <div className="space-y-4 text-black">
                                     <RadioGroup defaultValue="default" className="grid gap-3">
                                         <div className="flex items-center space-x-2">
                                             <RadioGroupItem value="default" id="r1" />
@@ -73,7 +73,7 @@ export default function WebhookPage() {
 
                             {/* Status */}
                             <div className="space-y-4">
-                                <Label className="text-sm font-medium">
+                                <Label className="text-sm font-medium text-black">
                                     状態
                                 </Label>
                                 <div className="flex items-center justify-between p-3 border rounded-lg">

@@ -38,7 +38,7 @@ export const dummyUsers: User[] = [
   {
     id: "3",
     email: "company@example.com",
-    name: "株式会社テスト",
+    name: "株式会社ABC",
     role: "organization",
     ...createUserRoleFlags("organization"),
     createdAt: new Date("2024-02-10"),

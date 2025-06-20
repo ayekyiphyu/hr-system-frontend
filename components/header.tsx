@@ -1,8 +1,12 @@
-"use client"
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage
+} from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,47 +14,56 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Separator } from "@/components/ui/separator"
-import { HeaderProps } from "@/type/type"
+} from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
+import { useAuthUser } from '@/hooks/useAuthUser';
+import { HeaderProps } from "@/type/type";
 import {
     Bell,
     ChevronDown,
     LogOut,
     Maximize,
     Settings
-} from "lucide-react"
-import { useRouter } from "next/navigation"
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface HeaderComponentProps extends HeaderProps {
     currentPageTitle: string;
 }
 
 export default function Header({
-    adminName = "田中 太郎",
-    adminAvatar,
-    adminRole = "システム管理者",
-    notificationCount = 3,
     currentPageTitle
 }: HeaderComponentProps) {
-    const router = useRouter()
+    const router = useRouter();
+    const user = useAuthUser();
 
-    const handleLogout = () => router.push("/login")
-    const handleNotifications = () => router.push("/notifications")
-    const handleSettings = () => router.push("/staff/staff-setting")
-    const handlePasswordSettings = () => router.push("/password-setting")
+    const handleLogout = () => {
+        localStorage.removeItem('authUser');
+        localStorage.removeItem('authToken');
+        document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        router.push("/");
+    };
+
+    const handleNotifications = () => router.push("/notifications");
+    const handleSettings = () => router.push("/staff/staff-setting");
+    const handlePasswordSettings = () => router.push("/password-setting");
     const handleExpandWindow = () => {
         if (document.fullscreenElement) {
-            document.exitFullscreen()
+            document.exitFullscreen();
         } else {
-            document.documentElement.requestFullscreen()
+            document.documentElement.requestFullscreen();
         }
-    }
+    };
+
+    const adminName = user?.name || "ゲスト";
+    const adminRole = user?.role || "未ログイン";
+    const adminAvatar = user?.avatar || undefined;
+    const notificationCount = 3; // You can update this dynamically if needed
 
     return (
         <header className="w-full h-[60px] secondary-background border-b border-gray-200/80 bg-white/95 backdrop-blur-sm flex items-center px-4 sm:px-6 lg:px-8 shadow-sm">
             <div className="flex items-center justify-between w-full">
-                {/* Left side - Logo and System Title */}
+                {/* Left - Logo and Page Title */}
                 <div className="flex items-center">
                     <div className="relative">
                         <img
@@ -60,7 +73,6 @@ export default function Header({
                         />
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
                     </div>
-
                     <div className="ml-4">
                         <p className="text-[1rem] primary-text py-3 font-bold hidden lg:block">
                             {currentPageTitle}
@@ -68,9 +80,8 @@ export default function Header({
                     </div>
                 </div>
 
-                {/* Right side - User controls */}
+                {/* Right - Controls */}
                 <div className="flex items-center gap-2">
-                    {/* Notifications */}
                     <Button
                         variant="ghost"
                         size="icon"
@@ -89,31 +100,28 @@ export default function Header({
                         )}
                     </Button>
 
-                    {/* Settings */}
                     <Button
                         variant="ghost"
                         size="icon"
                         className="hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleSettings}
-                        aria-label="パスワード設定"
+                        aria-label="設定"
                     >
                         <Settings className="h-5 w-5 text-gray-600" />
                     </Button>
 
-                    {/* Fullscreen */}
                     <Button
                         variant="ghost"
                         size="icon"
                         className="hover:bg-blue-50 hover:scale-105 transition-all duration-200 rounded-xl"
                         onClick={handleExpandWindow}
-                        aria-label="フルスクリーン切り替え"
+                        aria-label="フルスクリーン"
                     >
                         <Maximize className="h-5 w-5 text-gray-600" />
                     </Button>
 
                     <Separator orientation="vertical" className="h-8 hidden sm:block mx-2 bg-gray-200" />
 
-                    {/* User Dropdown */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
@@ -180,5 +188,5 @@ export default function Header({
                 </div>
             </div>
         </header>
-    )
+    );
 }
