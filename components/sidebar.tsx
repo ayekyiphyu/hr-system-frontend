@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { useAuthUser } from "@/hooks/useAuthUser"
 import { MenuItem } from "@/type/type"
 import {
     Building,
@@ -36,6 +37,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     const [expandedItems, setExpandedItems] = useState<string[]>([])
     const prevPathnameRef = useRef(pathname)
 
+    //for admin or organization or jobseeker
+    const user = useAuthUser();
+    const isAdmin = user?.isAdmin || false;
+
+
     // Only close sidebar on navigation if it was previously open and pathname actually changed
     useEffect(() => {
         if (prevPathnameRef.current !== pathname && isOpen) {
@@ -50,16 +56,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             icon: Home,
             href: "/dashboard"
         },
-        {
-            title: "スタッフ管理",
-            icon: Users,
-            children: [
-                { title: "スタッフ一覧", icon: Users, href: "/staff/staff-lists" },
-                { title: "スタッフ登録", icon: UserPlus, href: "/staff/register" },
-                { title: "スタッフ招待", icon: Mail, href: "/staff/invite" },
-                { title: "Webhook設定", icon: Webhook, href: "/staff/webhook", badge: "NEW" }
-            ]
-        },
+
+        ...(isAdmin ? [
+            {
+                title: "スタッフ管理",
+                icon: Users,
+                children: [
+                    { title: "スタッフ一覧", icon: Users, href: "/staff/staff-lists" },
+                    { title: "スタッフ登録", icon: UserPlus, href: "/staff/register" },
+                    { title: "スタッフ招待", icon: Mail, href: "/staff/invite" },
+                    { title: "Webhook設定", icon: Webhook, href: "/staff/webhook", badge: "NEW" }
+                ]
+            }
+        ] : []),
+
         {
             title: "組織管理・ユーザー管理",
             icon: Building,
