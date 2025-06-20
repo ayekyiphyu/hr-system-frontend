@@ -4,25 +4,6 @@
 
 ## 機能
 
-- 管理者ダッシュボード
-　- スタッフ管理
-　- スタッフ一覧
-　- スタッフ登録
-　- アカウント招待
-　- Webhook設定
-
-
-- 組織管理・ユーザー管理
-　- 組織管理
-　- ユーザー管理
-
-- 求職者管理
-　- 求人票一覧
-
-- 請求管理
-
-
-
 ## はじめに
 
 ### 前提条件
@@ -36,7 +17,6 @@
 1. リポジトリをクローンします
 ```bash
 git clone https://github.com/Yuime-Inc/hr-system-frontend.git
-cd hr-system-frontend(プロジェクトの名前は変予定定)
 ```
 
 2. 依存関係をインストールします
@@ -44,18 +24,8 @@ cd hr-system-frontend(プロジェクトの名前は変予定定)
 npm install
 ```
 
-3. 環境変数を設定します
-```bash
-cp .env.example .env
-# .envファイルを編集してデータベースやその他の設定を行ってください
-```
 
-4. データベースマイグレーションを実行します
-```bash
-npm run migrate
-```
-
-5. 開発サーバーを起動します
+3. 開発サーバーを起動します
 ```bash
 npm run dev
 ```
@@ -162,11 +132,10 @@ npm run build
 
 ## ライセンス
 
-このプロジェクトはMITライセンスの下でライセンスされています - 詳細は[LICENSE](LICENSE)ファイルを参照してください。
+
 
 ## 連絡先
 
-あなたの名前 - ayekyiphyu@yuime.co.jp
-プロジェクトリンク: https://hr-system-frontend-mauve.vercel.app/
+名前 【 ayekyiphyu@yuime.co.jp】
 
 不安な点がある場合は、【戦略室】のピューまでご連絡ください。
