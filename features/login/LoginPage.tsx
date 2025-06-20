@@ -4,7 +4,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { dummyLogin } from '@/dummy/dummy';
+import { dummyLogin } from '@/dummy/password-dummy';
 import { LoginFormData } from '@/type/type';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import router from 'next/router';

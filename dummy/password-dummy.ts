@@ -1,4 +1,11 @@
 import { AuthResponse, LoginCredentials, User, UserRole } from "@/type/type";
+import {
+  dummyNotifications,
+  dummyPageTitles,
+  dummySettings,
+  dummyUserProfiles,
+} from "./profiles-dummy";
+import { testCredentials, UserType } from "./users-dummy";
 
 // Helper function to create user role flags
 const createUserRoleFlags = (role: UserRole) => ({
@@ -104,22 +111,41 @@ export const dummyForgotPassword = async (
   };
 };
 
-// Test credentials for different user types
-export const testCredentials = {
-  admin: {
-    email: "admin@example.com",
-    password: "password123",
-  },
-  user: {
-    email: "user@example.com",
-    password: "password123",
-  },
-  organization: {
-    email: "company@example.com",
-    password: "password123",
-  },
-  jobseeker: {
-    email: "jobseeker@example.com",
-    password: "password123",
-  },
-};
+// Helper function to get user data by email
+export function getUserByEmail(email: string) {
+  const userType = Object.entries(testCredentials).find(
+    ([_, cred]) => cred.email === email
+  )?.[0] as UserType | undefined;
+
+  if (!userType) return null;
+
+  return {
+    userType,
+    profile: dummyUserProfiles[userType],
+    notifications: dummyNotifications[userType],
+    settings: dummySettings[userType],
+    pageTitles: dummyPageTitles[userType],
+  };
+}
+
+// Helper function to get notification count
+export function getNotificationCount(userType: UserType): number {
+  return dummyNotifications[userType].filter((notif) => !notif.isRead).length;
+}
+
+// Helper function to simulate login
+export function simulateLogin(email: string, password: string) {
+  const credentials = Object.values(testCredentials).find(
+    (cred) => cred.email === email && cred.password === password
+  );
+
+  if (!credentials) {
+    return { success: false, error: "Invalid credentials" };
+  }
+
+  const userData = getUserByEmail(email);
+  return {
+    success: true,
+    user: userData,
+  };
+}
