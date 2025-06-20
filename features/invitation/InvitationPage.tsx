@@ -2,11 +2,17 @@
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle, Mail } from 'lucide-react';
 import { useState } from 'react';
+
+interface InvitationResult {
+    email: string;
+    status: 'success' | 'failed';
+    message?: string;
+}
 
 export default function InvitationForm() {
     const [formData, setFormData] = useState({
@@ -18,36 +24,71 @@ export default function InvitationForm() {
     const [error, setError] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
     const [emailCount, setEmailCount] = useState(0);
+    const [invitationResults, setInvitationResults] = useState<InvitationResult[]>([]);
 
     const roleOptions = [
         {
             value: 'owner',
             label: 'オーナー',
-
         },
         {
             value: 'admin',
             label: '管理者',
-
         },
         {
             value: 'operator',
             label: 'オペレーター',
-
         },
         {
             value: 'viewer',
             label: '閲覧者',
-
         },
     ];
+
+    // Email validation function
+    const isValidEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email.trim());
+    };
+
+    // Parse and validate emails
+    const parseEmails = (emailString: string): string[] => {
+        return emailString
+            .split(',')
+            .map(email => email.trim())
+            .filter(email => email.length > 0);
+    };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value;
         setFormData({ ...formData, emails: value });
-        const emails = value.split(',').filter(e => e.trim()).length;
-        setEmailCount(value.trim() ? emails : 0);
+
+        const emails = parseEmails(value);
+        setEmailCount(emails.length);
+
         if (error) setError('');
+    };
+
+    // Simulate sending invitation to a single email
+    const sendSingleInvitation = async (email: string, role: string, message: string): Promise<InvitationResult> => {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+
+        // Simulate some failures (10% failure rate)
+        const success = Math.random() > 0.1;
+
+        if (success) {
+            return {
+                email,
+                status: 'success'
+            };
+        } else {
+            return {
+                email,
+                status: 'failed',
+                message: 'メール送信エラー'
+            };
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -64,11 +105,34 @@ export default function InvitationForm() {
             return;
         }
 
+        const emails = parseEmails(formData.emails);
+
+        // Validate email formats
+        const invalidEmails = emails.filter(email => !isValidEmail(email));
+        if (invalidEmails.length > 0) {
+            setError(`無効なメールアドレス形式: ${invalidEmails.join(', ')}`);
+            return;
+        }
+
+        // Check for duplicate emails
+        const uniqueEmails = Array.from(new Set(emails));
+        if (uniqueEmails.length !== emails.length) {
+            setError('重複したメールアドレスがあります');
+            return;
+        }
+
         setIsLoading(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Send invitations one by one
+            const results: InvitationResult[] = [];
+
+            for (const email of uniqueEmails) {
+                const result = await sendSingleInvitation(email, formData.role, formData.message);
+                results.push(result);
+            }
+
+            setInvitationResults(results);
             setIsSuccess(true);
         } catch (err) {
             setError('招待の送信に失敗しました。もう一度お試しください。');
@@ -83,43 +147,72 @@ export default function InvitationForm() {
         setError('');
         setIsSuccess(false);
         setIsLoading(false);
+        setInvitationResults([]);
     };
 
     if (isSuccess) {
-        return (
-            <div className="min-h-screen flex items-center justify-center sm:p-6 lg:p-8 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-200/30 to-emerald-200/30 rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-teal-200/30 to-cyan-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                </div>
+        const successCount = invitationResults.filter(result => result.status === 'success').length;
+        const failedCount = invitationResults.filter(result => result.status === 'failed').length;
 
-                <div className="w-full max-w-sm sm:max-w-md relative z-10">
-                    <Card className="shadow-2xl border-0 sm:border backdrop-blur-sm bg-white/95">
-                        <CardContent className="bg-gradient-to-br from-white to-green-50/50 p-6 sm:p-8 m-4 sm:m-[46px] text-center">
-                            <div className="flex justify-center mb-4 sm:mb-6 relative">
-                                <div className="relative">
-                                    <CheckCircle className="h-12 w-12 sm:h-16 sm:w-16 text-green-500 animate-bounce" />
-                                    <div className="absolute inset-0 h-12 w-12 sm:h-16 sm:w-16 bg-green-500/20 rounded-full animate-ping"></div>
+        return (
+            <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50">
+                <div className="w-full max-w-md">
+                    <Card className="shadow-md border border-gray-200 bg-white">
+                        <CardContent className="p-8 text-center">
+                            <div className="flex justify-center mb-6">
+                                <CheckCircle className="h-16 w-16 text-green-500" />
+                            </div>
+
+                            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                                招待を送信しました
+                            </h2>
+
+                            <div className="text-gray-600 mb-6 space-y-2">
+                                <div>
+                                    <span className="font-semibold text-green-600">
+                                        {successCount}件
+                                    </span>
+                                    のアカウント招待が正常に送信されました。
+                                </div>
+                                {failedCount > 0 && (
+                                    <div>
+                                        <span className="font-semibold text-red-600">
+                                            {failedCount}件
+                                        </span>
+                                        の送信に失敗しました。
+                                    </div>
+                                )}
+                                <div className="text-sm">
+                                    招待されたユーザーにメールが届きます。
                                 </div>
                             </div>
 
-                            <CardTitle className="text-lg sm:text-2xl mb-3 sm:mb-4 text-transparent bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text font-bold">
-                                招待を送信しました
-                            </CardTitle>
-
-                            <CardDescription className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base px-2 leading-relaxed">
-                                <span className="font-semibold text-green-600">
-                                    {emailCount}件
-                                </span>
-                                のアカウント招待が正常に送信されました。
-                                <br />
-                                招待されたユーザーにメールが届きます。
-                            </CardDescription>
+                            {/* Show detailed results if there are failures */}
+                            {failedCount > 0 && (
+                                <div className="mb-6 text-left">
+                                    <div className="text-sm font-medium text-gray-700 mb-2">送信結果:</div>
+                                    <div className="max-h-32 overflow-y-auto space-y-1">
+                                        {invitationResults.map((result, index) => (
+                                            <div
+                                                key={index}
+                                                className={`text-xs p-2 rounded border flex items-center justify-between ${result.status === 'success'
+                                                    ? 'bg-green-50 text-green-700 border-green-200'
+                                                    : 'bg-red-50 text-red-700 border-red-200'
+                                                    }`}
+                                            >
+                                                <span className="truncate">{result.email}</span>
+                                                <span className="ml-2 font-medium">
+                                                    {result.status === 'success' ? '✓' : '✗'}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
 
                             <Button
                                 onClick={handleReset}
-                                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                                className="w-full h-12 bg-blue-600 text-white"
                             >
                                 新しい招待を送信
                             </Button>
@@ -131,50 +224,39 @@ export default function InvitationForm() {
     }
 
     return (
-        <div className="min-h-screen">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-gradient-to-tl from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
-
-            <div className="w-full relative z-10">
-                <Card className="w-full pb-0 mb-0">
-                    <CardHeader className="text-center">
-                        <div className="p-0">
-                            <CardTitle className="text-2xl font-bold flex items-center justify-center gap-3">
-
-                                アカウント招待
-                            </CardTitle>
-                        </div>
+        <div className="min-h-screen bg-gray-50">
+            <div className="w-full">
+                <Card className="w-full border border-gray-200 bg-white">
+                    <CardHeader className="text-center border-b border-gray-100">
+                        <CardTitle className="text-2xl font-bold text-gray-800">
+                            アカウント招待
+                        </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="bg-gradient-to-br from-white to-gray-50/30 m-4 sm:mt-[0px] p-4 sm:p-6 rounded-lg">
-                        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <CardContent className="p-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             {error && (
-                                <Alert variant="destructive" className="border-red-200 bg-red-50/80">
+                                <Alert className="border-red-200 bg-red-50">
                                     <AlertDescription className="text-sm text-red-700">{error}</AlertDescription>
                                 </Alert>
                             )}
 
                             {/* メールアドレス */}
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700">
                                     メールアドレス <span className="text-red-500">*</span>
                                 </label>
-                                <div className="relative group">
-                                    <Textarea
-                                        value={formData.emails}
-                                        onChange={handleEmailChange}
-                                        placeholder="例: user1@example.com, user2@example.com"
-                                        className="bg-white primary-text min-h-[120px] w-full placeholder:primary-text text-sm sm:text-base resize-none"
-                                        disabled={isLoading}
-                                    />
-                                </div>
-                                <div className="flex justify-between mt-2 text-sm">
+                                <Textarea
+                                    value={formData.emails}
+                                    onChange={handleEmailChange}
+                                    placeholder="例: user1@example.com, user2@example.com"
+                                    className="bg-white border-gray-300 min-h-[120px] w-full text-sm resize-none"
+                                    disabled={isLoading}
+                                />
+                                <div className="flex justify-between text-sm">
                                     <span className="text-gray-500">カンマ区切りで複数のメールアドレスを入力</span>
                                     {emailCount > 0 && (
-                                        <span className="text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-md">
+                                        <span className="text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded border border-blue-200">
                                             {emailCount}件のアドレス
                                         </span>
                                     )}
@@ -183,50 +265,43 @@ export default function InvitationForm() {
 
                             {/* 権限選択 */}
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700">
                                     権限 <span className="text-red-500">*</span>
                                 </label>
-                                <div className="relative group">
-                                    <Select
-                                        value={formData.role}
-                                        onValueChange={(value) => setFormData({ ...formData, role: value })}
-                                        disabled={isLoading}
-                                    >
-                                        <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base !h-[46px] min-h-[46px]">
-                                            <SelectValue placeholder="権限を選択してください *" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {roleOptions.map((option) => (
-                                                <SelectItem
-                                                    key={option.value}
-                                                    value={option.value}
-                                                    className="py-3"
-                                                >
-                                                    <div className="flex flex-col items-start">
-                                                        <div className="font-medium text-sm">{option.label}</div>
-
-                                                    </div>
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                <Select
+                                    value={formData.role}
+                                    onValueChange={(value) => setFormData({ ...formData, role: value })}
+                                    disabled={isLoading}
+                                >
+                                    <SelectTrigger className="bg-white border-gray-300 w-full text-sm h-[46px]">
+                                        <SelectValue placeholder="権限を選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {roleOptions.map((option) => (
+                                            <SelectItem
+                                                key={option.value}
+                                                value={option.value}
+                                                className="py-3"
+                                            >
+                                                <div className="font-medium text-sm">{option.label}</div>
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             {/* メッセージ（任意） */}
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <label className="block text-sm font-medium text-gray-700">
                                     招待メッセージ（任意）
                                 </label>
-                                <div className="relative group">
-                                    <Textarea
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        placeholder="招待する際の個人的なメッセージを入力してください"
-                                        className="bg-white primary-text min-h-[100px] w-full placeholder:primary-text text-sm sm:text-base resize-none"
-                                        disabled={isLoading}
-                                    />
-                                </div>
+                                <Textarea
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    placeholder="招待する際の個人的なメッセージを入力してください"
+                                    className="bg-white border-gray-300 min-h-[100px] w-full text-sm resize-none"
+                                    disabled={isLoading}
+                                />
                                 <div className="text-xs text-gray-500">
                                     このメッセージは招待メールに含まれます
                                 </div>
@@ -238,7 +313,7 @@ export default function InvitationForm() {
                                     type="button"
                                     variant="outline"
                                     onClick={handleReset}
-                                    className="w-[151px] h-[50px] sm:h-12 text-sm sm:text-base primary-text"
+                                    className="w-[151px] h-12 text-sm border-gray-300 text-gray-700"
                                     disabled={isLoading}
                                 >
                                     キャンセル
@@ -246,9 +321,8 @@ export default function InvitationForm() {
 
                                 <Button
                                     type="submit"
-                                    variant="default"
                                     disabled={isLoading}
-                                    className="w-[151px] h-[50px] sm:h-12 text-sm sm:text-base text-white border-0"
+                                    className="w-[151px] h-12 text-sm bg-blue-600 text-white border-0"
                                 >
                                     {isLoading ? (
                                         <>
@@ -256,10 +330,7 @@ export default function InvitationForm() {
                                             送信中...
                                         </>
                                     ) : (
-                                        <>
-
-                                            招待を送信
-                                        </>
+                                        '招待を送信'
                                     )}
                                 </Button>
                             </div>
@@ -268,9 +339,8 @@ export default function InvitationForm() {
                             <div className="flex sm:hidden flex-col gap-3 pt-4">
                                 <Button
                                     type="submit"
-                                    variant="default"
                                     disabled={isLoading}
-                                    className="w-full h-12 text-sm text-white"
+                                    className="w-full h-12 text-sm bg-blue-600 text-white"
                                 >
                                     {isLoading ? (
                                         <>
@@ -288,7 +358,7 @@ export default function InvitationForm() {
                                     type="button"
                                     variant="outline"
                                     onClick={handleReset}
-                                    className="w-full h-12 text-sm primary-text"
+                                    className="w-full h-12 text-sm border-gray-300 text-gray-700"
                                     disabled={isLoading}
                                 >
                                     キャンセル
