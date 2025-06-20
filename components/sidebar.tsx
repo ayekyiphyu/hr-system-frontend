@@ -74,8 +74,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             title: "組織管理・ユーザー管理",
             icon: Building,
             children: [
-                { title: "組織管理", icon: Building, href: "/organization" },
-                { title: "ユーザー管理", icon: User, href: "/users" }
+                { title: "組織管理", icon: Building, href: "/organization/dashboard" },
+                { title: "ユーザー管理", icon: User, href: "/users/dashboard" }
             ]
         },
         {
