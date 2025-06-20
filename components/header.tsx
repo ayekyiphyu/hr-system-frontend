@@ -69,7 +69,8 @@ export default function Header({
                         <img
                             src="/assest/images/logo01.png"
                             alt="Logo"
-                            className="w-[35px] h-auto"
+                            className="w-[35px] h-auto cursor-pointer"
+                            onClick={() => router.push('/dashboard')}
                         />
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
                     </div>
