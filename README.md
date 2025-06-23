@@ -35,4 +35,7 @@ project-root/
 └── README.md
 ```
 
-
+## backend 
+- python fast-api
+- dockerdatabase
+-firebase GCP
