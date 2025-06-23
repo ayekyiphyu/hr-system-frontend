@@ -40,6 +40,3 @@ project-root/
 
 ## 連絡先
 
-名前 【 ayekyiphyu@yuime.co.jp】
-
-不安な点がある場合は、【DX戦略室】のピューまでご連絡ください。
