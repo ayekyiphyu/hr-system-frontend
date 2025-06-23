@@ -137,7 +137,7 @@ export default function OrganizationListPage() {
                                     onClick={handleInviteClick}
                                     className="group relative inline-flex items-center gap-2 p-[8px] w-[px] common-bg text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
                                 >
-                                    <Mails className="h-4 !text-white" />
+                                    <Mails className="h-4 !text-white text-[12px]" />
                                     ユーザー招待
                                 </button>
                             </div>
@@ -266,16 +266,16 @@ export default function OrganizationListPage() {
                                     <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
                                         組織名
                                     </th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[100px]">
                                         組織区分
                                     </th>
                                     <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
                                         代表電話
                                     </th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[100px]">
                                         国
                                     </th>
-                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
+                                    <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[100px]">
                                         登録日
                                     </th>
                                     <th className="px-4 py-3 text-left text-sm font-semibold text-white min-w-[180px]">
@@ -299,19 +299,19 @@ export default function OrganizationListPage() {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-4 py-3">
+                                            <td className="">
                                                 <CategoryBadge category={org.category} />
                                             </td>
-                                            <td className="px-4 py-3 text-sm text-gray-600">
+                                            <td className="">
                                                 {org.phone}
                                             </td>
-                                            <td className="px-4 py-3 text-sm text-gray-600">
+                                            <td className="">
                                                 {org.country}
                                             </td>
-                                            <td className="px-4 py-3 text-sm text-gray-600">
+                                            <td className="">
                                                 {org.registrationDate}
                                             </td>
-                                            <td className="px-4 py-3">
+                                            <td className="">
                                                 <ActionButtons organization={org} />
                                             </td>
                                         </tr>
