@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
-import DashboardPage from "@/features/organization/dashboard/DashboardPage";
+import OrganizationListPage from "@/features/organization/organization-lists/OrganizationLists";
 
-export default function Dashboard() {
+export default function OrganizationLists() {
     return (
         <>
 
@@ -9,7 +9,7 @@ export default function Dashboard() {
 
             >
                 <div className="container mx-auto sm:px-6 !p-0">
-                    <DashboardPage />
+                    <OrganizationListPage />
                 </div>
             </Layout>
 

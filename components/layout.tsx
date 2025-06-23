@@ -59,7 +59,7 @@ export default function Layout({
             title: "組織管理・ユーザー管理",
             icon: Building,
             children: [
-                { title: "組織管理", icon: Building, href: "/organization/dashboard" },
+                { title: "組織管理", icon: Building, href: "/organization/organization-lists/" },
                 { title: "ユーザー管理", icon: User, href: "/users/dashboard" }
             ]
         },

@@ -64,7 +64,7 @@ export default function LoginPage() {
                 if (response.user.isAdmin) {
                     router.push('/dashboard');
                 } else if (response.user.isOrganization) {
-                    router.push('/organization/dashboard');
+                    router.push('/organization/organization-lists/');
                 } else if (response.user.isJobseeker) {
                     console.log('Redirecting to jobseeker dashboard');
                 } else if (response.user.isUser) {
