@@ -1,6 +1,7 @@
 'use client';
 
-import { ChevronDown, Edit, Eye, Filter, Mails, Search, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, Edit, Eye, Filter, Mails, Plus, Search, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 // Updated type definition for Organization
@@ -137,9 +138,10 @@ export default function OrganizationListPage() {
                                     className="group relative inline-flex items-center gap-2 p-[8px] w-[px] common-bg text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
                                 >
                                     <Mails className="h-4 !text-white" />
-                                    組織招待
+                                    ユーザー招待
                                 </button>
                             </div>
+
 
                             {/* Right Section - Filters */}
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
@@ -194,6 +196,22 @@ export default function OrganizationListPage() {
                                             <option>インドネシア</option>
                                         </select>
                                         <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                    </div>
+
+                                    <div className="relative">
+                                        <div>
+
+                                            <Button
+                                                variant="secondary"
+                                                onClick={() => {
+
+                                                }}
+                                                className="w-full sm:h-12 text-sm sm:text-base tracking-wide text-red"
+                                            >
+                                                <Plus className="h-4 w-4 mr-2" />
+                                                新規登録
+                                            </Button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
