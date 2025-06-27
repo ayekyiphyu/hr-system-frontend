@@ -39,3 +39,7 @@ project-root/
 - python fast-api
 - dockerdatabase
 -firebase GCP
+
+
+## backend
+- backend will be ... 
