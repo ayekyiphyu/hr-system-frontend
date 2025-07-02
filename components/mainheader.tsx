@@ -5,10 +5,14 @@ export default function MainHeader() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleRegister = () => {
-        router.push('/staff/regsiter')
+
+        router.push('/register')
+
     };
 
-
+    const handleLogin = () => {
+        router.push('/')
+    };
 
     return (
         <header className="bg-white shadow-md border-b border-gray-200">
@@ -18,9 +22,9 @@ export default function MainHeader() {
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
                             <h1 className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors cursor-pointer">
-                                HRConnect System
+                                HRConnect
                             </h1>
-                            <p className="text-xs text-gray-500 -mt-1">HR Management System</p>
+
                         </div>
                     </div>
 
@@ -42,7 +46,12 @@ export default function MainHeader() {
 
                     {/* Auth Buttons - Desktop */}
                     <div className="hidden md:flex items-center space-x-4">
-
+                        <button
+                            onClick={handleLogin}
+                            className="text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-colors border border-gray-300 rounded-md hover:border-blue-600"
+                        >
+                            Login
+                        </button>
                         <button
                             onClick={handleRegister}
                             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-sm font-medium rounded-md transition-colors shadow-sm hover:shadow-md"
@@ -85,7 +94,12 @@ export default function MainHeader() {
                                 About
                             </a>
                             <div className="pt-4 pb-2 border-t border-gray-200 space-y-2">
-
+                                <button
+                                    onClick={handleLogin}
+                                    className="w-full text-left text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium border border-gray-300 rounded-md"
+                                >
+                                    Login
+                                </button>
                                 <button
                                     onClick={handleRegister}
                                     className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 text-base font-medium rounded-md"
