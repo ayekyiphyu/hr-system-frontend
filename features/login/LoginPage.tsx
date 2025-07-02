@@ -96,11 +96,11 @@ export default function LoginPage() {
 
                         <CardTitle className="text-center text-xl sm:text-2xl font-bold text-primary flex flex-col items-center">
                             <img
-                                src="/assest/images/logo01.png"
+                                src="/assest/images/logo2.png"
                                 alt="Logo"
-                                className="h-[100px] w-auto "
+                                className="h-[auto] w-auto "
                             />
-                            <p className='pt-[1rem] pb-[0rem]'>ログイン</p>
+
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="bg-white p-4 sm:p-6 mr-[46px] ml-[46px]">

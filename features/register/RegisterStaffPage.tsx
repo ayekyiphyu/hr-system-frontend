@@ -25,7 +25,7 @@ interface PasswordStrength {
     isValid: boolean
 }
 
-export default function RegisterStaffPage() {
+export default function RegisterPage() {
     const router = useRouter()
     const [formData, setFormData] = useState<RegisterFormData>({
         fullName: "",
@@ -277,7 +277,7 @@ export default function RegisterStaffPage() {
                     <CardHeader className="text-center">
                         <div className="p-0">
                             <CardTitle className="text-2xl font-bold">
-                                Create Regsiter
+                                新規アカウント登録
                             </CardTitle>
                         </div>
                     </CardHeader>

@@ -1,7 +1,5 @@
 import Layout from "@/components/layout";
-import RegisterPage from "@/features/register/RegisterPage";
-
-
+import RegisterStaffPage from "@/features/register/RegisterStaffPage";
 
 export default function register() {
     return (
@@ -13,7 +11,7 @@ export default function register() {
                 notificationCount={5}
             >
                 <div className="container mx-auto sm:px-6 !p-0">
-                    <RegisterPage />
+                    <RegisterStaffPage />
                 </div>
             </Layout>
         </>
