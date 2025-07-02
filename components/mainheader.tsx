@@ -21,8 +21,8 @@ export default function MainHeader() {
                     {/* Company Logo/Name */}
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <h1 className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors cursor-pointer">
-                                HRConnect
+                            <h1 className="text-2xl font-bold textsecondary transition-colors cursor-pointer">
+                                HR Matching System
                             </h1>
 
                         </div>
@@ -54,7 +54,7 @@ export default function MainHeader() {
                         </button>
                         <button
                             onClick={handleRegister}
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-sm font-medium rounded-md transition-colors shadow-sm hover:shadow-md"
+                            className="bgsecondary  text-white px-6 py-2 text-sm font-medium rounded-md transition-colors shadow-sm "
                         >
                             Register
                         </button>
@@ -102,7 +102,7 @@ export default function MainHeader() {
                                 </button>
                                 <button
                                     onClick={handleRegister}
-                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 text-base font-medium rounded-md"
+                                    className="w-full bgsecondary hover:bg-blue-700 text-white px-3 py-2 text-base font-medium rounded-md"
                                 >
                                     Register
                                 </button>

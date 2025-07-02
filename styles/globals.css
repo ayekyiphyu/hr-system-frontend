@@ -131,7 +131,7 @@
 }
 
 .primary-background {
-  background-color: #DC2626
+  background-color: #01524c
 }
 
 .bg-primary {
@@ -213,4 +213,12 @@ button {
 
 .text-card-foreground {
   color: #dc2626;
+}
+
+.bgsecondary {
+  background-color: #01524c;
+}
+
+.textsecondary {
+  color: #01524c
 }
