@@ -149,7 +149,11 @@
 
 
 .secondary-background {
-  background-color: #FFF8F8
+  background-color: #F3F4F6
+}
+
+.bg-card {
+  background-color: #F3F4F6 !important
 }
 
 .back-button {
