@@ -46,17 +46,6 @@ export default function RegisterStaffPage() {
     const [error, setError] = useState("")
     const [isSuccess, setIsSuccess] = useState(false)
 
-    // Sample data for dropdowns
-    const departments = [
-        { value: "engineering", label: "エンジニアリング部" },
-        { value: "sales", label: "営業部" },
-        { value: "marketing", label: "マーケティング部" },
-        { value: "hr", label: "人事部" },
-        { value: "finance", label: "財務部" },
-        { value: "operations", label: "運営部" },
-        { value: "support", label: "サポート部" }
-    ]
-
     const roles = [
         { value: "owner", label: "オーナー" },
         { value: "admin", label: "管理者" },
@@ -444,27 +433,7 @@ export default function RegisterStaffPage() {
                                 </div>
                             </div>
 
-                            {/* 組織部 & 権限 */}
-
-                            {/* 組織部 */}
-                            <div className="space-y-2 ">
-                                <div className="relative group ">
-                                    <Select onValueChange={(value) => handleSelectChange("department", value)}>
-                                        <SelectTrigger className="bg-white primary-text w-full placeholder:primary-text text-sm sm:text-base !h-[46px] min-h-[46px]" >
-                                            <SelectValue placeholder="組織部 *" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {departments.map((dept) => (
-                                                <SelectItem key={dept.value} value={dept.value}>
-                                                    {dept.label}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-
-                            {/* 権限 */}
+                            {/* Role */}
                             <div className="space-y-2">
                                 <div className="relative group">
                                     <Select onValueChange={(value) => handleSelectChange("role", value)}>

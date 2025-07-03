@@ -66,7 +66,7 @@
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
-  --input: #dc2626;
+  --input: #01524c;
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -84,7 +84,7 @@
 }
 
 .dark {
-  --background: #dc2626;
+  --background: #01524c;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -119,11 +119,12 @@
 
 
 .primary-text {
-  color: #be4337
+  /* color: #be4337 */
+  color: #01524c;
 }
 
 .secondary-text {
-  color: #DC2626
+  color: #01524c
 }
 
 .text-black {
@@ -135,11 +136,13 @@
 }
 
 .bg-primary {
-  background-color: #be4337
+  /* background-color: #be4337 */
+
+  background-color: #01524c;
 }
 
 .common-bg {
-  background-color: #E71A28
+  background-color: #01524c
 }
 
 
@@ -164,7 +167,7 @@ select {
 
 
 svg {
-  color: #dc2626;
+  color: #01524c;
 }
 
 *:focus {
@@ -173,7 +176,7 @@ svg {
 
 input:hover,
 input:focus {
-  border-color: #dc2626;
+  border-color: #01524c;
 }
 
 input:focus {
@@ -193,7 +196,7 @@ button {
 }
 
 ::placeholder {
-  color: #dc2626;
+  color: #01524c;
 }
 
 
@@ -212,7 +215,7 @@ button {
 }
 
 .text-card-foreground {
-  color: #dc2626;
+  color: #01524c;
 }
 
 .bgsecondary {

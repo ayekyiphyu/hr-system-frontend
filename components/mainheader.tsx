@@ -14,6 +14,14 @@ export default function MainHeader() {
         router.push('/')
     };
 
+    const handleJobSeeker = () => {
+        console.log("jobSeeker")
+    }
+
+    const handleAgency = () => {
+        console.log("Agency")
+    }
+
     return (
         <header className="bg-white shadow-md border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +54,7 @@ export default function MainHeader() {
 
                     {/* Auth Buttons - Desktop */}
                     <div className="hidden md:flex items-center space-x-4">
-                        <button
+                        {/* <button
                             onClick={handleLogin}
                             className="text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-colors border border-gray-300 rounded-md hover:border-blue-600"
                         >
@@ -57,6 +65,19 @@ export default function MainHeader() {
                             className="bgsecondary  text-white px-6 py-2 text-sm font-medium rounded-md transition-colors shadow-sm "
                         >
                             Register
+                        </button> */}
+
+                        <button
+                            onClick={handleJobSeeker}
+                            className="w-full text-left text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium border border-gray-300 rounded-md"
+                        >
+                            JobSeeker
+                        </button>
+                        <button
+                            onClick={handleAgency}
+                            className="w-auto text-left text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium border border-gray-300 rounded-md"
+                        >
+                            Agency
                         </button>
                     </div>
 
@@ -100,6 +121,8 @@ export default function MainHeader() {
                                 >
                                     Login
                                 </button>
+
+
                                 <button
                                     onClick={handleRegister}
                                     className="w-full bgsecondary hover:bg-blue-700 text-white px-3 py-2 text-base font-medium rounded-md"
